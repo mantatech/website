@@ -1,0 +1,35 @@
+/*-- scss:defaults --*/
+$main-color : #5801FF;
+$secondary-color: #FFD600;
+$background-color: #15161F;
+$secondary-background-color: #0C0B0C;
+$text-color: #E1E1E1;
+$foreground-color: #56505C;
+$selection-color: #595959;
+$border-color: #56505C;
+
+$body-bg : $background-color;
+$body-color: $text-color;
+
+$navbar-bg: $main-color;
+
+/*-- scss:rules --*/
+
+:root {
+  --custom-main-color: #{$main-color};
+  --custom-secondary-color: #{$secondary-color};
+  --custom-background-color: #{$background-color};
+  --custom-secondary-background-color: #{$secondary-background-color};
+  --custom-text-color: #{$text-color};
+  --custom-foreground-color: #{$foreground-color};
+  --custom-selection-color: #{$selection-color};
+  --custom-border-color: #{$border-color};
+}
+
+span.navbar-title {
+  font-size: 1.3em;
+}
+
+h1,h2,h3,h4{
+  color: $text-color;
+}
