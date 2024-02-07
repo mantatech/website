@@ -7,8 +7,13 @@ website:
     left:
       - href: index.qmd
         text: Home
+      - href: articles.qmd
+        text: Articles
       - href: about.qmd
         text: About
+  page-footer: 
+    left: "Copyright &copy; Manta, Inc. 2024. All Rights Reserved"
+    right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
 
 format:
   html:
@@ -17,5 +22,4 @@ format:
       dark: [zephyr, style/theme-dark.scss]
     mainfont: Tailwind
     fontsize: 1.15em
-    css: styles.css
-    toc: true
+    toc: false
