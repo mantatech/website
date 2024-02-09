@@ -1,7 +1,10 @@
 ---
 title: "The New Frontier: Data Science in the Decentralized Era"
-date: "2024-02-07"
+date: "2024-02-07" # Date of creation
+last_modified: "2024-02-09" # Date of last modification
 categories: [cloud, edge, decentralization]
+bibliography: references.bib
+csl: ../../style/ieee.csl
 ---
 
 Data science, in its broadest sense, represents a fusion of multiple disciplines, combining data analysis, statistics, machine learning, and deep learning to extract insights and knowledge from data. Historically, the field of data science has progressed from early methods of recording and analyzing data to the development of complex algorithms and statistical models in the 20th century. The advent of modern computing gave birth to the term "data science" in the 1960s, but it wasn't until the late 1990s and early 2000s that the field truly exploded, owing to the digital revolution and the exponential growth of data.
@@ -20,11 +23,9 @@ In this chapter, we delve into the critical factors prompting a shift from tradi
 
 ### Data Privacy, Security, and Sovereignty: The Imperative for Change
 
-In the realm of centralized data models, where vast amounts of data are aggregated and processed in cloud-based infrastructures, the challenges of data privacy, security, and sovereignty have become increasingly pronounced. The centralized nature of these systems often makes them attractive targets for malicious activities, leading to significant security concerns. Data breaches in cloud environments have become a notable concern, with recent studies revealing that 39% of businesses experienced a data breach in their cloud environment in the past year. This figure represents a concerning increase from the previous year's 35%. Such breaches are often attributed to vulnerabilities like cloud misconfigurations or provider-related issues. The implications of these breaches are substantial, not just in terms of immediate data loss or unauthorized access, but also in the time and resources required for recovery. For a significant percentage of businesses, it took more than half a day to restore operations after such breaches.
+In the realm of centralized data models, where vast amounts of data are aggregated and processed in cloud-based infrastructures, the challenges of data privacy, security, and sovereignty have become increasingly pronounced. The centralized nature of these systems often makes them attractive targets for malicious activities, leading to significant security concerns. Data breaches in cloud environments have become a notable concern, with recent studies [@cloudSecurity2023] revealing that 39% of businesses experienced a data breach in their cloud environment in the past year. This figure represents a concerning increase from the previous year's 35%. Such breaches are often attributed to vulnerabilities like cloud misconfigurations or provider-related issues. The implications of these breaches are substantial, not just in terms of immediate data loss or unauthorized access, but also in the time and resources required for recovery. For a significant percentage of businesses, it took more than half a day to restore operations after such breaches.
 
-Source: https://cpl.thalesgroup.com/about-us/newsroom/2023-cloud-security-cyberattacks-data-breaches-press-release
-
-Privacy concerns are further heightened by the increasing scrutiny on how personal data is handled, especially in the wake of high-profile scandals involving the misuse of user data. Regulations such as the European Union's General Data Protection Regulation ([GDPR](https://gdpr-info.eu/)) have emerged as responses to these concerns, enforcing stricter data protection standards. Addressing data privacy, GDPR stands as a crucial regulatory framework that has significantly influenced data management practices. GDPR mandates stringent data protection standards, challenging traditional data handling methods and pushing for more secure and privacy-focused approaches.
+Privacy concerns are further heightened by the increasing scrutiny on how personal data is handled, especially in the wake of high-profile scandals involving the misuse of user data. Regulations such as the European Union's General Data Protection Regulation [@GDPR2024] have emerged as responses to these concerns, enforcing stricter data protection standards. Addressing data privacy, GDPR stands as a crucial regulatory framework that has significantly influenced data management practices. GDPR mandates stringent data protection standards, challenging traditional data handling methods and pushing for more secure and privacy-focused approaches.
 
 Moreover, data sovereignty emerges as a crucial issue, particularly for companies bound by national regulations on data storage and processing. The reliance on cloud providers, often located in different jurisdictions, complicates compliance with these regulations. This concern is not just a matter of legal compliance but also touches on national and economic interests, where data is increasingly viewed as a strategic asset.
 
@@ -32,11 +33,9 @@ Given these concerns, the centralized cloud-based model, while offering scalabil
 
 ### The Burgeoning Costs: Energy and Financial Implications of Cloud Computing
 
-Source: https://doi.org/10.1007/s10586-022-03713-0
-
 Cloud computing, hailed for its scalability, computing power, and high availability, has revolutionized how organizations manage and process data. This technology allows businesses to rapidly scale resources up or down, meeting demand without the need for substantial upfront investment in physical infrastructure. This flexibility, combined with robust computational capabilities and round-the-clock availability, makes cloud computing an attractive option for data storage and processing.
 
-However, this convenience comes at a significant cost, both environmentally and economically. The energy consumption of data centers, key components of cloud infrastructure, has been on a steep rise. From consuming 200 terawatt-hours (TWh) in 2016, it is projected to escalate to an astonishing 2967 TWh by 2030. This sharp increase in energy demand inevitably leads to higher CO2 emissions, especially in regions where the energy mix is heavily reliant on fossil fuels.
+However, this convenience comes at a significant cost, both environmentally and economically. The energy consumption of data centers, key components of cloud infrastructure, has been on a steep rise [@greenComputing2022]. From consuming 200 terawatt-hours (TWh) in 2016, it is projected to escalate to an astonishing 2967 TWh by 2030. This sharp increase in energy demand inevitably leads to higher CO2 emissions, especially in regions where the energy mix is heavily reliant on fossil fuels.
 
 The trend towards horizontal scaling in cloud computing, while efficient for handling varying workloads, is particularly energy-intensive for complex tasks. Hyperscale data centers, which form the backbone of many cloud services, have seen their energy usage nearly quadruple from 2015 to 2023, becoming the predominant consumers of data center energy globally.
 
