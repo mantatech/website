@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 /*-- scss:defaults --*/
 $main-color : #5801FF;
 $secondary-color: #FFD600;
@@ -41,15 +43,14 @@ $navbar-bg: $main-color;
   top: 45vh;
   left: 0px;
   width: 100%;
-  color: #FFD600;
   text-align: center;
   vertical-align: middle;
 }
 
-.inner-manta-title{
-  background: $background-color;
-  border-radius: 10px;
-  padding: 10px;
+
+.manta-title .inside{
+  font-family: Pixelify Sans;
+  color: $secondary-color;
 }
 
 span.navbar-title {

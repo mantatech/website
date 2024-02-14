@@ -7,4 +7,9 @@ format:
           <script src="static/pixels.js"></script>
 ---
 
-<div class="pixels"></div><div class="manta-title"><span class="inner-manta-title"><span style="color: #5801FF;">Diving into the </span>power of distributed data</span></div>
+::: {.pixels}
+:::
+
+::: {.manta-title}
+<span class="outside">Diving into the <span class="inside">power of distributed data</span></span>
+:::
