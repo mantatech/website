@@ -18,6 +18,7 @@ website:
 format:
   html:
     theme: [zephyr, style/theme-dark.scss]
+    css: style/animation.css
     mainfont: Tailwind
     fontsize: 1.15em
     toc: false
