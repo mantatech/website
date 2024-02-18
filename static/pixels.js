@@ -1,34 +1,37 @@
-const pixelSize = 20; // pixels
+const pixelSize = 15; // pixels
 const space = 7;      // pixels
 const pixels = document.querySelector(".pixels");
 
 function buildPixels(){
-  const width = window.innerWidth;
+  const width = window.innerWidth - 15;
   const height = pixels.clientHeight;
   const nRows = Math.floor((height - space) / (space + pixelSize));
   const nCols = Math.floor((width - space) / (space + pixelSize));
-  const offsetY = Math.floor(((height - space) % (space + pixelSize)) / 2);
-  const offsetX = Math.floor(((width - space) % (space + pixelSize)) / 2);
+  const offsetY = (height - (nRows * (pixelSize + space) - space)) / 2;
+  const offsetX = (width - (nCols * (pixelSize + space) - space)) / 2;
 
   pixels.innerHTML = "";
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.setAttribute("width", `${width}`);
+  svg.setAttribute("height", `${height}`);
+  svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
   for (let row = 0; row < nRows; row++) {
-    const rowDiv = document.createElement("div");
     const proba = (nRows - row + 5) / (nRows + 5);
     const opacity = Math.max(0.1, (nRows - row) / nRows);
-    var posX = 0;
-    rowDiv.setAttribute("class", "pixel-row")
     for (let col = 0; col < nCols; col ++){
       if (Math.random() < proba){
-        const div = document.createElement("div");
-        div.setAttribute("class", "pixel");
-        div.setAttribute("style", `top: ${offsetY + row * space}px; left: ${offsetX + posX + col * space}px; opacity: ${opacity};`);
-        rowDiv.appendChild(div);
-      } else {
-        posX += pixelSize;
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        rect.setAttribute("width", pixelSize);
+        rect.setAttribute("height", pixelSize);
+        rect.setAttribute("fill", "white");
+        rect.setAttribute("x", offsetX + space + col * (space + pixelSize));
+        rect.setAttribute("y", offsetY + space + row * (space + pixelSize));
+        rect.setAttribute("opacity", opacity);
+        svg.appendChild(rect)
       }
     }
-    pixels.appendChild(rowDiv);
   }
+  pixels.appendChild(svg);
 }
 
 buildPixels();
