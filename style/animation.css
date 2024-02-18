@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 @property --angle {
   syntax: '<angle>';
   initial-value: 90deg;
@@ -18,7 +20,7 @@
 
 
 :root {
-	--d: 2000ms;
+	--d: 3500ms;
 	--angle: 90deg;
 	--gradX: 100%;
 	--gradY: 50%;
@@ -28,18 +30,47 @@
 
 @keyframes borderRotate {
 	100% {
-		--angle: 420deg;
+		--angle: 450deg;
 	}
 }
 
 .manta-title .outside{
   box-sizing: border-box;
   background: #15161F;
-  /* border-radius: 10px; */
-  /* border: 2px solid $main-color; */
-  border: 0.3rem solid;
+  border-radius: 10px;
+  /* border: 0.3rem solid #5801FF; */
+  /* border: 0.3rem solid; */
 	padding: 1vw;
 
-	border-image: conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30;
-	animation: borderRotate var(--d) linear infinite forwards;
+	/* border-image: conic-gradient(from var(--angle), var(--c1) 0.1turn, var(--c1) 0.12turn, var(--c1) 0.25turn, var(--c2) 0.12turn) 1; */
+	/* background-image: conic-gradient(from var(--angle), var(--c1) 0.1turn, var(--c1) 0.12turn, var(--c1) 0.25turn, var(--c2) 0.12turn); */
+	/* animation: borderRotate var(--d) linear infinite forwards; */
+}
+
+.manta-title .inside {
+  font-family: Pixelify Sans;
+  /* font-weight: bold; */
+  background-image: linear-gradient(
+    -225deg,
+    #E1E1E1 0%,
+    #5801FF 29%,
+    #FF1361 67%,
+    #FFD600 100%
+  );
+  background-size: auto auto;
+  background-clip: border-box;
+  background-size: 200% auto;
+  color: #fff;
+  background-clip: text;
+  text-fill-color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textclip 2s linear infinite alternate;
+  display: inline-block;
+}
+
+@keyframes textclip {
+  to {
+    background-position: 100% center;
+  }
 }

@@ -13,13 +13,13 @@ $border-color: #56505C;
 $body-bg : $background-color;
 $body-color: $text-color;
 
-$navbar-bg: $main-color;
+// $navbar-bg: $main-color;
 
 /*-- scss:rules --*/
 
 .pixels{
   position: absolute;
-  top: 60px;
+  top: 90px;
   left: 0px;
   width: 100%;
   height: 50vh;
@@ -47,11 +47,15 @@ $navbar-bg: $main-color;
   vertical-align: middle;
 }
 
-
-.manta-title .inside{
-  font-family: Pixelify Sans;
-  color: $secondary-color;
+.navbar {
+  background: rgba(21, 22, 31, 0.75);
+  backdrop-filter: blur(5px);
 }
+
+// .manta-title .inside{
+//   font-family: Pixelify Sans;
+//   color: $secondary-color;
+// }
 
 span.navbar-title {
   font-size: 1.3em;
