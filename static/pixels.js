@@ -1,9 +1,14 @@
 const pixelSize = 15; // pixels
 const space = 7;      // pixels
 const pixels = document.querySelector(".pixels");
-const title = document.createElement("div")
-title.setAttribute("class", "manta-title")
-title.innerHTML = '<span class="outside"><span>Diving into the</span> <span class="inside">power of distributed data</span></span>'
+const title = document.createElement("div");
+title.setAttribute("class", "manta-title");
+title.innerHTML = '<span class="outside"><span>Diving into the</span> <span class="inside">power of distributed data</span></span>';
+
+const subtitle = document.createElement("div");
+subtitle.setAttribute("class", "manta-subtitle");
+subtitle.innerHTML = '<span>Our cutting-edge distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation</span>';
+
 
 function buildPixels(){
   const width = 0.99 * window.innerWidth;
@@ -38,6 +43,7 @@ function buildPixels(){
   }
   pixels.appendChild(svg);
   pixels.appendChild(title);
+  pixels.appendChild(subtitle);
 }
 
 buildPixels();

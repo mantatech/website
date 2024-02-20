@@ -14,7 +14,7 @@ format:
 ::: {.content}
 ::: {.light-section}
 
-## Empower edge computing
+## Take care of your data in your infrastructure
 
 ::: {.expressions}
   <img src="figures/data-privacy.svg"></img>
@@ -24,6 +24,12 @@ format:
   <img src="figures/cost.svg"></img>
   <span>Reduce cost of data processing</span>
 :::
+
+:::
+:::
+
+::: {.content}
+::: {.dark-section}
 
 :::
 :::
