@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
+#quarto-content>*{
+  padding-top: 0px;
+}
+
+p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 @property --angle {
   syntax: '<angle>';
   initial-value: 90deg;
@@ -62,7 +71,6 @@
   background-size: 200% auto;
   color: #fff;
   background-clip: text;
-  text-fill-color: transparent;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: textclip 2s linear infinite alternate;
