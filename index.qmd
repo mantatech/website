@@ -8,8 +8,33 @@ format:
           <script src="static/pixels.js"></script>
 ---
 
+::: {.header}
 ::: {.pixels}
 :::
+
+::: {.distribute}
+
+::: {.title}
+::: {.manta-title}
+<span class="outside">
+  <span>Diving into the</span>
+  <span class="inside">power of distributed data</span>
+</span>
+:::
+::: {.manta-subtitle}
+<span>Our cutting-edge distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation</span>
+:::
+:::
+
+::: {.overview}
+<img id="gear" src="https://video-public.canva.com/VADqk28DZiY/videos/b01eee4684.gif">
+<img id="earth" src="https://video-public.canva.com/VAECocYiGXw/v/5fdc99515f.gif">
+<img id="overview" src="figures/overview.svg"></img>
+:::
+:::
+
+:::
+
 
 ::: {.content}
 ::: {.light-section}
