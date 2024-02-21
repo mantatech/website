@@ -35,3 +35,36 @@ p {
     background-position: 100% center;
   }
 }
+
+.overview {
+  overflow: hidden;
+  width: 80%;
+  text-align: center;
+  position: relative;
+}
+
+#overview {
+  width: 80%;
+}
+
+@media (min-width: 960px) {
+  .overview {
+    width: 40%;
+  }
+}
+
+#gear{
+  width: 7%;
+  filter: invert();
+  position: absolute;
+  top: 53.5%;
+  left: 20%;
+}
+
+#earth {
+  width: 7%;
+  filter: invert();
+  position: absolute;
+  top: 40%;
+  left: 50%;
+}
