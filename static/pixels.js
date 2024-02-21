@@ -1,5 +1,5 @@
 const pixelSize = 15; // pixels
-const space = 7;      // pixels
+const space = 2;      // pixels
 const pixels = document.querySelector(".pixels");
 const title = document.createElement("div");
 title.setAttribute("class", "manta-title");
@@ -24,7 +24,7 @@ function buildPixels(){
   svg.setAttribute("height", `${height}`);
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
   for (let row = 0; row < nRows; row++) {
-    const proba = (nRows - row + 5) / (nRows + 5);
+    const proba = 0.1 * (nRows - row + 5) / (nRows + 5);
     const opacity = Math.max(0.1, (nRows - row) / nRows);
     const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
     for (let col = 0; col < nCols; col ++){
@@ -35,7 +35,7 @@ function buildPixels(){
         rect.setAttribute("fill", "white");
         rect.setAttribute("x", offsetX + space + col * (space + pixelSize));
         rect.setAttribute("y", offsetY + space + row * (space + pixelSize));
-        rect.setAttribute("opacity", opacity);
+        rect.setAttribute("opacity", opacity * 0.2);
         g.appendChild(rect);
       }
     }
