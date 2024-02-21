@@ -9,53 +9,6 @@ p {
   margin-bottom: 0px;
 }
 
-@property --angle {
-  syntax: '<angle>';
-  initial-value: 90deg;
-  inherits: true;
-}
-
-@property --gradX {
-  syntax: '<percentage>';
-  initial-value: 50%;
-  inherits: true;
-}
-
-@property --gradY {
-  syntax: '<percentage>';
-  initial-value: 0%;
-  inherits: true;
-}
-
-
-:root {
-	--d: 3500ms;
-	--angle: 90deg;
-	--gradX: 100%;
-	--gradY: 50%;
-	--c1: #5801FF;
-	--c2: #15161F;
-}
-
-@keyframes borderRotate {
-	100% {
-		--angle: 450deg;
-	}
-}
-
-.manta-title .outside{
-  box-sizing: border-box;
-  background: #15161F;
-  border-radius: 10px;
-  /* border: 0.3rem solid #5801FF; */
-  /* border: 0.3rem solid; */
-	padding: 1vw;
-
-	/* border-image: conic-gradient(from var(--angle), var(--c1) 0.1turn, var(--c1) 0.12turn, var(--c1) 0.25turn, var(--c2) 0.12turn) 1; */
-	/* background-image: conic-gradient(from var(--angle), var(--c1) 0.1turn, var(--c1) 0.12turn, var(--c1) 0.25turn, var(--c2) 0.12turn); */
-	/* animation: borderRotate var(--d) linear infinite forwards; */
-}
-
 .manta-title .inside {
   font-family: Pixelify Sans;
   /* font-weight: bold; */
