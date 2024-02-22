@@ -1,5 +1,5 @@
 ---
-css: style/animation.css
+css: style/home.css
 page-layout: custom
 include-after-body:
   - text: |
