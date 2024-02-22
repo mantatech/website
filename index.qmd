@@ -27,7 +27,7 @@ include-after-body:
 ::: {.overview}
 ![](https://video-public.canva.com/VADqk28DZiY/videos/b01eee4684.gif){id="gear"}
 ![](https://video-public.canva.com/VAECocYiGXw/v/5fdc99515f.gif){id="earth"}
-![](figures/overview.svg){id="overview"}
+![](static/home/overview.svg){id="overview"}
 :::
 :::
 
@@ -37,7 +37,7 @@ include-after-body:
 ::: {.content}
 ::: {.light-section .flex}
 
-![](figures/make-ai.svg)
+![](static/home/make-ai.svg)
 
 ::: {.paragraph}
 ### Learn on your device
@@ -58,8 +58,8 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 :::
 
 ::: {.content-animation}
-![](figures/communications.svg)
-![](figures/neural-network.svg){id="neural-network"}
+![](static/home/communications.svg)
+![](static/home/neural-network.svg){id="neural-network"}
 :::
 
 :::
@@ -70,8 +70,8 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 ::: {.light-section .flex}
 
 ::: {.content-animation}
-![](figures/collaboration.svg)
-![](figures/handshake.svg){id="handshake"}
+![](static/home/collaboration.svg)
+![](static/home/handshake.svg){id="handshake"}
 :::
 
 ::: {.paragraph}
@@ -91,7 +91,7 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
 :::
 
-![](figures/silos.svg)
+![](static/home/silos.svg)
 
 :::
 :::
@@ -102,11 +102,11 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 ## Take care of your data in your infrastructure
 
 ::: {.expressions}
-  ![](figures/data-privacy.svg)
+  ![](static/home/data-privacy.svg)
   <span>Learning without sharing data</span>
-  ![](figures/chip.svg)
+  ![](static/home/chip.svg)
   <span>Take advantage of the power of edge computing</span>
-  ![](figures/cost.svg)
+  ![](static/home/cost.svg)
   <span>Reduce cost of data processing</span>
 :::
 
