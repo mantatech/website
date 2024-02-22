@@ -27,14 +27,76 @@ format:
 :::
 
 ::: {.overview}
-<img id="gear" src="https://video-public.canva.com/VADqk28DZiY/videos/b01eee4684.gif">
-<img id="earth" src="https://video-public.canva.com/VAECocYiGXw/v/5fdc99515f.gif">
-<img id="overview" src="figures/overview.svg"></img>
+![](https://video-public.canva.com/VADqk28DZiY/videos/b01eee4684.gif){id="gear"}
+![](https://video-public.canva.com/VAECocYiGXw/v/5fdc99515f.gif){id="earth"}
+![](figures/overview.svg){id="overview"}
 :::
 :::
 
 :::
 
+
+::: {.content}
+::: {.light-section .flex}
+
+![](figures/make-ai.svg)
+
+::: {.paragraph}
+### Learn on your device
+
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+:::
+
+:::
+:::
+
+::: {.content}
+::: {.dark-section .flex}
+
+::: {.paragraph}
+### Communicate knowledges without sharing data
+
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+:::
+
+::: {.content-animation}
+![](figures/communications.svg)
+![](figures/neural-network.svg){id="neural-network"}
+:::
+
+:::
+:::
+
+
+::: {.content}
+::: {.light-section .flex}
+
+::: {.content-animation}
+![](figures/collaboration.svg)
+![](figures/handshake.svg){id="handshake"}
+:::
+
+::: {.paragraph}
+### Collaboration without compromising your data
+
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+:::
+
+:::
+:::
+
+::: {.content}
+::: {.dark-section .flex}
+
+::: {.paragraph}
+### Bridge together data silos 
+Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+:::
+
+![](figures/silos.svg)
+
+:::
+:::
 
 ::: {.content}
 ::: {.light-section}
@@ -42,19 +104,13 @@ format:
 ## Take care of your data in your infrastructure
 
 ::: {.expressions}
-  <img src="figures/data-privacy.svg"></img>
+  ![](figures/data-privacy.svg)
   <span>Learning without sharing data</span>
-  <img src="figures/chip.svg"></img>
+  ![](figures/chip.svg)
   <span>Take advantage of the power of edge computing</span>
-  <img src="figures/cost.svg"></img>
+  ![](figures/cost.svg)
   <span>Reduce cost of data processing</span>
 :::
-
-:::
-:::
-
-::: {.content}
-::: {.dark-section}
 
 :::
 :::

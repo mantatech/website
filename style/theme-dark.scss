@@ -117,6 +117,21 @@ h1, h2, h3, h4{
   }
 }
 
-.header{
+.header {
   background: linear-gradient(0deg, rgba(27,0,79,1) 0%, rgba(21,22,31,1) 100%);
+}
+
+.flex{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 960px) {
+  .flex{
+    flex-direction: row;
+  }
 }
