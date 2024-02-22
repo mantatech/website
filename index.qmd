@@ -1,11 +1,9 @@
 ---
-format:
-  html:
-    css: style/animation.css
-    page-layout: custom
-    include-after-body:
-      - text: |
-          <script src="static/pixels.js"></script>
+css: style/animation.css
+page-layout: custom
+include-after-body:
+  - text: |
+      <script src="static/pixels.js"></script>
 ---
 
 ::: {.header}
