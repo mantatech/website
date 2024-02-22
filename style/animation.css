@@ -68,3 +68,59 @@ p {
   top: 40%;
   left: 50%;
 }
+
+.content-animation {
+  overflow: hidden;
+  position: relative;
+}
+
+@keyframes communication {
+  0% {
+    filter: brightness(0) saturate(100%) invert(9%) sepia(95%) saturate(7492%) hue-rotate(265deg) brightness(105%) contrast(130%);
+    transform: translateX(0%);
+  }
+  49% {
+    filter: brightness(0) saturate(100%) invert(9%) sepia(95%) saturate(7492%) hue-rotate(265deg) brightness(105%) contrast(130%);
+    transform: translateX(600%);
+    visibility: hidden;
+  }
+  50% {
+    visibility: hidden;
+    filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
+    transform: translate(600%, 200%);
+  }
+  51% {
+    visibility: none;
+    filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
+    transform: translate(600%, 200%);
+  }
+  100% {
+    filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
+    transform: translate(0%, 200%);
+  }
+}
+
+#neural-network {
+  position: absolute;
+  width: 5.6%;
+  top: 10%;
+  left: 30%;
+  animation: communication 8s infinite forwards;
+}
+
+@keyframes collaboration {
+  0% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(10%);
+  }
+}
+
+#handshake {
+  position: absolute;
+  width: 10%;
+  top: 30%;
+  left: 45%;
+  animation: collaboration 1s ease-in-out infinite alternate;
+}
