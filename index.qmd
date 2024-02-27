@@ -34,27 +34,58 @@ include-after-body:
 :::
 
 
+
 ::: {.content}
-::: {.light-section .flex}
+::: {.light-section .flex .padding-1}
+
+::: {.paragraph}
+### Bridge together data silos
+Data silos are isolated data, accessible only by enterprises or sometimes only by local departments. Our platform allows to exploit them together without compromising privacy concerns.
+:::
+
+![](static/home/silos.svg)
+
+:::
+:::
+
+::: {.content}
+::: {.dark-section .padding-2}
+
+## Take care of your data in your infrastructure
+
+::: {.expressions}
+  ![](static/home/data-privacy.svg)
+  <span>Learning without sharing data</span>
+  ![](static/home/chip.svg)
+  <span>Take advantage of the power of edge computing</span>
+  ![](static/home/cost.svg)
+  <span>Reduce cost of data processing</span>
+:::
+
+:::
+:::
+
+::: {.content}
+::: {.light-section .flex .padding-3}
 
 ![](static/home/make-ai.svg)
 
 ::: {.paragraph}
 ### Learn on your device
 
-Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+The new paradigm Compute-to-Data allows you to make value on your data directly where your data are produced, on your edge devices.
 :::
 
 :::
 :::
 
 ::: {.content}
-::: {.dark-section .flex}
+::: {.dark-section .flex .padding-4}
 
 ::: {.paragraph}
 ### Communicate knowledges without sharing data
 
-Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
+Instead of communicated data to a third service, you communicate models between devices. You have a complete control on your data.
 :::
 
 ::: {.content-animation}
@@ -67,7 +98,7 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 
 
 ::: {.content}
-::: {.light-section .flex}
+::: {.light-section .flex .padding-5}
 
 ::: {.content-animation}
 ![](static/home/collaboration.svg)
@@ -77,37 +108,7 @@ Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint 
 ::: {.paragraph}
 ### Collaboration without compromising your data
 
-Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
-:::
-
-:::
-:::
-
-::: {.content}
-::: {.dark-section .flex}
-
-::: {.paragraph}
-### Bridge together data silos 
-Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint cillum sint consectetur cupidatat.
-:::
-
-![](static/home/silos.svg)
-
-:::
-:::
-
-::: {.content}
-::: {.light-section}
-
-## Take care of your data in your infrastructure
-
-::: {.expressions}
-  ![](static/home/data-privacy.svg)
-  <span>Learning without sharing data</span>
-  ![](static/home/chip.svg)
-  <span>Take advantage of the power of edge computing</span>
-  ![](static/home/cost.svg)
-  <span>Reduce cost of data processing</span>
+With Manta, enterprises can collaborate together without sharing or revealing their own data.
 :::
 
 :::

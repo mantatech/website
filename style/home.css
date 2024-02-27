@@ -101,6 +101,26 @@ p {
   display: inline-block;
 }
 
+.padding-1 {
+  padding: 10vh 0;
+}
+
+.padding-2 {
+  padding: 15vh 0;
+}
+
+.padding-3 {
+  padding: 10vh 0;
+}
+
+.padding-4 {
+  padding: 25vh 0;
+}
+
+.padding-5 {
+  padding: 25vh 0;
+}
+
 .content-animation {
   overflow: hidden;
   position: relative;
@@ -166,6 +186,10 @@ p {
 
   .overview {
     width: 40%;
+  }
+
+  .paragraph {
+    max-width: 30%;
   }
 }
 /* }}} */ 

@@ -36,7 +36,6 @@ span.navbar-title {
 
 .light-section{
   background: #252737;
-  padding: 10vh 0;
   text-align: center;
 }
 
@@ -55,8 +54,12 @@ span.navbar-title {
 
 .dark-section{
   background: $background-color;
-  padding: 10vh 0;
   text-align: center;
+}
+
+.dark-section h2 {
+  padding-bottom: 10vh;
+  border: none;
 }
 
 .distribute{
@@ -78,7 +81,7 @@ span.navbar-title {
   display: flex!important;
   flex-direction: column;
   text-align: center;
-  gap: 50px;
+  gap: 7vw;
   justify-content: center;
   align-items: center;
 }
