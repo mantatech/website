@@ -11,7 +11,7 @@ css: style/about.css
 ::: {.flex}
 
 ::: {.profile}
-![](figures/ceo.jpg)
+![](static/about/ceo.jpg)
 
 ### Hugo Miralles
 <span class="role">CEO</span>
@@ -20,7 +20,7 @@ Adventure enthusiast and leader.<br>Combines a deep technical background with a 
 :::
 
 ::: {.profile}
-![](figures/cto.jpg)
+![](static/about/cto.jpg)
 
 ### Hugo Miralles
 <span class="role">CTO</span>
@@ -56,7 +56,7 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 ::: {.flex}
 ::: {.part}
 
-![](figures/values1.png){class="filter-img"}
+![](static/about/values1.png){class="filter-img"}
 
 **Edge Efficiency: Smarter Spending for Smarter Data**
 
@@ -65,7 +65,7 @@ Manta focuses on redefining data processing economics. We emphasize efficient, c
 
 ::: {.part}
 
-![](figures/values2.png){class="filter-img"}
+![](static/about/values2.png){class="filter-img"}
 
 **Guardians of Data: Secure, Compliant, Traceable**
 
@@ -74,7 +74,7 @@ Our approach centers on robust data security and adherence to compliance standar
 
 ::: {.part}
 
-![](figures/values3.png){class="filter-img"}
+![](static/about/values3.png){class="filter-img"}
 
 **Collaborative Intelligence: Bridging Data Gaps Securely**
 
@@ -92,7 +92,7 @@ Manta aims to facilitate secure data collaboration, breaking down corporate silo
 
 ::: {.missions-items}
 ::: {.item}
-![](figures/missions1.png)
+![](static/about/missions1.png)
 
 **Trust in every process: Secure Data, Secure Operations**   
 
@@ -100,7 +100,7 @@ Our mission is to ensure data security and reliable operations, fostering trust 
 :::
 
 ::: {.item}
-![](figures/missions2.png)
+![](static/about/missions2.png)
 
 **Scale with simplicity: Extend your World with Decentralization**
 
@@ -108,7 +108,7 @@ We focus on simplifying scalability in digital environments, offering edge compu
 :::
 
 ::: {.item}
-![](figures/missions3.png){class="special"}
+![](static/about/missions3.png){class="special"}
 
 **Operate and Monitor: Command your Digital Frontier**
 
@@ -116,7 +116,7 @@ Manta prioritizes empowering users with tools for effective management and overs
 :::
 
 ::: {.item}
-![](figures/missions4.png)
+![](static/about/missions4.png)
 
 **Seamless exploration: Focus on Value, Not Complexity**
 
