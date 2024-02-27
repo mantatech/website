@@ -1,0 +1,59 @@
+h2 {
+  border-bottom: none;
+  padding: 5vh 0;
+}
+
+.quarto-title {
+  text-align: center;
+}
+
+.profile > p > img {
+  border-radius: 10%;
+}
+
+.role {
+  background: #FFD600;
+  padding: 0.5em;
+  border-radius: 0.4em;
+  color: #5801FF;
+  font-weight: bold;
+  font-size: 1.3em;
+}
+
+.values {
+  text-align: center;
+  padding: 20vh 0;
+}
+
+.filter-img {
+  filter: brightness(0) saturate(100%) invert(74%) sepia(59%) saturate(1%) hue-rotate(125deg) brightness(105%) contrast(103%);
+}
+
+.team {
+  text-align: center;
+  justify-items: center;
+}
+
+.missions-items {
+  display: flex!important;
+  flex-direction: column;
+  text-align: center;
+  gap: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 960px){
+  .missions-items{
+    flex-direction: row;
+  }
+}
+
+.special {
+  padding: 1em 0;
+}
+
+.missions {
+  text-align: center;
+  padding-bottom: 5vh;
+}

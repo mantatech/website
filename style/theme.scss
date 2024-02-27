@@ -1,0 +1,121 @@
+/*-- scss:defaults --*/
+
+@font-face{
+  font-family: Tailwind;
+  font-weight: normal;
+  src: url("static/fonts/Tailwind Regular.ttf");
+}
+
+@font-face{
+  font-family: "Tailwind Bold";
+  font-weight: bold;
+  src: url("static/fonts/Tailwind Black.ttf");
+}
+
+$main-color : #5801FF;
+$secondary-color: #FFD600;
+$background-color: #15161F;
+$secondary-background-color: #0C0B0C;
+$text-color: #E1E1E1;
+$foreground-color: #56505C;
+$selection-color: #595959;
+$border-color: #56505C;
+
+$body-bg : $background-color;
+$body-color: $text-color;
+
+// $navbar-bg: $main-color;
+
+/*-- scss:rules --*/
+
+// Common properties {{{
+
+h1, h2, h3, h4{
+  color: $text-color;
+}
+
+.navbar {
+  background: rgba(21, 22, 31, 0.75);
+  backdrop-filter: blur(5px);
+}
+
+span.navbar-title {
+  font-size: 1.3em;
+}
+
+/// }}}
+
+// Properties {{{
+
+.light-section{
+  background: #252737;
+  text-align: center;
+}
+
+.light-section h2 {
+  padding-bottom: 10vh;
+  border: none;
+}
+
+.expressions > p {
+  display: flex!important;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+}
+
+.dark-section{
+  background: $background-color;
+  text-align: center;
+}
+
+.dark-section h2 {
+  padding-bottom: 10vh;
+  border: none;
+}
+
+.distribute{
+  display: flex!important;
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  gap: 25px;
+  justify-content: center;
+  align-items: center;
+  height: 92vh;
+}
+
+.header {
+  background: linear-gradient(0deg, rgba(27,0,79,1) 0%, rgba(21,22,31,1) 100%);
+}
+
+.flex{
+  display: flex!important;
+  flex-direction: column;
+  text-align: center;
+  gap: 7vw;
+  justify-content: center;
+  align-items: center;
+}
+
+/// }}}
+
+// Media specifications {{{
+
+@media (min-width: 960px) {
+  .expressions > p {
+    flex-direction: row;
+  }
+
+  .distribute {
+    flex-direction: row;
+    padding: 0 2vw;
+  }
+
+  .flex{
+    flex-direction: row;
+  }
+}
+
+/// }}}

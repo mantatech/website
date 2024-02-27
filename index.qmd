@@ -1,58 +1,115 @@
 ---
-title: "Diving into the power of distributed data"
-format:
-  html:
-    page-layout: full
+css: style/home.css
+page-layout: custom
+include-after-body:
+  - text: |
+      <script src="static/pixels.js"></script>
 ---
 
-Our cutting-edge distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation
+::: {.header}
+::: {.pixels}
+:::
 
-## Advancing Beyond the Cloud: Unlocking Efficiency and Security
+::: {.distribute}
 
-- **Cost Efficiency**
+::: {.title}
+::: {.manta-title}
+<span class="outside">
+  <span>Diving into the</span>
+  <span class="inside">power of distributed data</span>
+</span>
+:::
+::: {.manta-subtitle}
+<span>Our cutting-edge distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation</span>
+:::
+:::
 
-Conducting computations closer to the data source reduces costs associated with cloud processing and minimize energy consumption.
+::: {.overview}
+![](https://video-public.canva.com/VADqk28DZiY/videos/b01eee4684.gif){id="gear"}
+![](https://video-public.canva.com/VAECocYiGXw/v/5fdc99515f.gif){id="earth"}
+![](static/home/overview.svg){id="overview"}
+:::
+:::
 
-- **Enhanced Data Security**
+:::
 
-Manta fortifies data privacy by decentralizing storage, to mitigate the risks associated with centralized data repositories.
 
-- **Environmental Impact**
 
-Our edge computing model significantly lowers energy usage compared to traditional cloud infrastructures.
+::: {.content}
+::: {.light-section .flex .padding-1}
 
-- **Improved Connectivity and Speed:**
+::: {.paragraph}
+### Bridge together data silos
+Data silos are isolated data, accessible only by enterprises or sometimes only by local departments. Our platform allows to exploit them together without compromising privacy concerns.
+:::
 
-Experience real-time data processing with Manta's edge-based approach.
+![](static/home/silos.svg)
 
-## Our Values
+:::
+:::
 
-- **Edge Efficiency: Smarter Spending for Smarter Data**
+::: {.content}
+::: {.dark-section .padding-2}
 
-Manta focuses on redefining data processing economics. We emphasize efficient, cost-effective solutions, leveraging edge computing for economic advantage while maximizing data utility at its source.
+## Take care of your data in your infrastructure
 
-- **Guardians of Data: Secure, Compliant, Traceable**
+::: {.expressions}
+  ![](static/home/data-privacy.svg)
+  <span>Learning without sharing data</span>
+  ![](static/home/chip.svg)
+  <span>Take advantage of the power of edge computing</span>
+  ![](static/home/cost.svg)
+  <span>Reduce cost of data processing</span>
+:::
 
-Our approach centers on robust data security and adherence to compliance standards like GDPR. We prioritize maintaining data integrity, ensuring security, and offering traceable data management.
+:::
+:::
 
-- **Collaborative Intelligence: Bridging Data Gaps Securely**
+::: {.content}
+::: {.light-section .flex .padding-3}
 
-Manta aims to facilitate secure data collaboration, breaking down corporate silos. Our focus is on fostering secure, innovative partnerships for shared data utilization, enhancing cooperative progress.
+![](static/home/make-ai.svg)
 
-## Our Mission
+::: {.paragraph}
+### Learn on your device
 
-- **Trust in every process: Secure Data, Secure Operations**   
+The new paradigm Compute-to-Data allows you to make value on your data directly where your data are produced, on your edge devices.
+:::
 
-Our mission is to ensure data security and reliable operations, fostering trust with robust environments where data confidentiality and integrity are paramount.
-    
-- **Scale with simplicity: Extend your World with Decentralization**
+:::
+:::
 
-We focus on simplifying scalability in digital environments, offering edge computing solutions for seamless business expansion and resilient decentralized collaboration.
+::: {.content}
+::: {.dark-section .flex .padding-4}
 
-- **Operate and Monitor: Command your Digital Frontier**
+::: {.paragraph}
+### Communicate knowledges without sharing data
 
-Manta prioritizes empowering users with tools for effective management and oversight of their digital operations, emphasizing intuitive control and monitoring.
+Instead of communicated data to a third service, you communicate models between devices. You have a complete control on your data.
+:::
 
-- **Seamless exploration: Focus on Value, Not Complexity**
+::: {.content-animation}
+![](static/home/communications.svg)
+![](static/home/neural-network.svg){id="neural-network"}
+:::
 
-Our goal is to streamline data analysis and model training, enabling professionals to focus on deriving value and innovation from their data, free from technical complexities.
+:::
+:::
+
+
+::: {.content}
+::: {.light-section .flex .padding-5}
+
+::: {.content-animation}
+![](static/home/collaboration.svg)
+![](static/home/handshake.svg){id="handshake"}
+:::
+
+::: {.paragraph}
+### Collaboration without compromising your data
+
+With Manta, enterprises can collaborate together without sharing or revealing their own data.
+:::
+
+:::
+:::
