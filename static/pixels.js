@@ -15,6 +15,7 @@ function buildPixels(){
   svg.setAttribute("width", `${width}`);
   svg.setAttribute("height", `${height}`);
   svg.setAttribute("viewBox", `0 0 ${width} ${height}`);
+  svg.setAttribute("preserveAspectRatio", "xMinYMin meet")
   for (let row = 0; row < nRows; row++) {
     const proba = 0.1 * (nRows - row + 5) / (nRows + 5);
     const opacity = Math.max(0.1, (nRows - row) / nRows);
