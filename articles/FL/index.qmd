@@ -14,7 +14,7 @@ Federated Learning (FL) has emerged as a transformative approach in the realm of
 
 # **What is Federated Learning?**
 
-Federated Learning (FL) emerged as a groundbreaking concept in 2017 when Brendan McMahan and his colleagues introduced the Federated Averaging algorithm [@McMahan2017FedAvg]. At its core, FL is a powerful method for training machine learning models across multiple decentralized data sources, such as mobile devices or organizations, without the need to share or transfer the underlying data. This approach has gained significant traction recently, particularly due to its synergistic relationship with emerging technologies in edge computing and distributed learning.
+Federated Learning (FL) emerged as a groundbreaking concept in 2017 when Brendan McMahan and his colleagues introduced the Federated Averaging algorithm [McMahan2017FedAvg]. At its core, FL is a powerful method for training machine learning models across multiple decentralized data sources, such as mobile devices or organizations, without the need to share or transfer the underlying data. This approach has gained significant traction recently, particularly due to its synergistic relationship with emerging technologies in edge computing and distributed learning.
 
 One of the most compelling advantages of FL is its inherent focus on privacy and security. By keeping data localized on clients' devices, FL significantly reduces the risks associated with data breaches and misuse. This aspect of FL aligns well with the increasing global emphasis on data privacy regulations.
 
@@ -50,7 +50,7 @@ Central to the learning algorithm is the objective function, often termed the lo
 
 During training, this objective function guides the adjustment of the model's parameters. The learning algorithm iteratively refines these parameters to minimize the loss. In the context of Federated Learning, each participating client endeavors to minimize the loss on their local dataset. These individual learnings are then collectively aggregated to enhance the global model.
 
-For a more comprehensive dive into the complexities of deep learning models, their parameterization, and the pivotal role of objective functions, readers are recommended to consult "Deep Learning" by Goodfellow, Bengio, and Courville [@Goodfellow-et-al-2016]. This resource offers an extensive examination of neural networks and deep learning fundamentals, providing an essential foundation for these critical aspects of modern machine learning.
+For a more comprehensive dive into the complexities of deep learning models, their parameterization, and the pivotal role of objective functions, readers are recommended to consult "Deep Learning" by Goodfellow, Bengio, and Courville [Goodfellow-et-al-2016]. This resource offers an extensive examination of neural networks and deep learning fundamentals, providing an essential foundation for these critical aspects of modern machine learning.
 
 ### **Optimizing the Global Model: The Central Objective Function in Federated Learning**
 
@@ -81,25 +81,30 @@ In Federated Learning (FL), the core principle is to collaboratively minimize a 
 ### **The Steps of Federated Learning**
 
 1. **Client Selection**
-  The server identifies a subset of clients for participation in the current training round. This step is critical for managing computational resources and ensuring diverse representation in the learning process.
+
+The server identifies a subset of clients for participation in the current training round. This step is critical for managing computational resources and ensuring diverse representation in the learning process.
 
 2. **Global Model Distribution**
-  The global model, parameterized by $\theta$, is distributed to the selected clients. This model encapsulates the current state of learned parameters from the collective training efforts of all clients so far.
+
+The global model, parameterized by $\theta$, is distributed to the selected clients. This model encapsulates the current state of learned parameters from the collective training efforts of all clients so far.
 
 3. **Local Training**
-  Each client performs training on its local dataset. This step involves updating the model parameters ($\theta$) locally to minimize the loss function specific to that client's data.
+
+Each client performs training on its local dataset. This step involves updating the model parameters ($\theta$) locally to minimize the loss function specific to that client's data.
 
 4. **Model Update Sharing**
-  Post-training, clients share their updated model parameters (denoted as $\theta_i$) with the server. These updates are essentially the refined weights learned from each client's unique data.
+
+Post-training, clients share their updated model parameters (denoted as $\theta_i$) with the server. These updates are essentially the refined weights learned from each client's unique data.
 
 5. **Aggregation**
-  The server aggregates these individual updates to update the global model. This aggregation often takes the form of a weighted average, where each client's contribution might be weighted by factors such as the size of their dataset.
+
+The server aggregates these individual updates to update the global model. This aggregation often takes the form of a weighted average, where each client's contribution might be weighted by factors such as the size of their dataset.
 
 Through these steps, the FL process iteratively converges towards a model that effectively captures the collective intelligence of all participating clients.
 
 ## **Federated Averaging (FedAvg) Explained**
 
-Federated Averaging, or FedAvg, proposed by McMahan et al., serves as a quintessential example of applying these FL steps in a centralized synchronous environment [@McMahan2017FedAvg]. The objective function can be formulated as:
+Federated Averaging, or FedAvg, proposed by McMahan et al., serves as a quintessential example of applying these FL steps in a centralized synchronous environment [McMahan2017FedAvg]. The objective function can be formulated as:
 
 $$
 \min_{\theta} \frac{1}{n} \sum_{i \in D} n_i \cdot F_i(\theta). 
@@ -191,7 +196,7 @@ As we have explored throughout this article, Federated Learning (FL) represents 
 
 FL inherently enhances data privacy by keeping data localized, but this is just the beginning. To fortify data security further, techniques like Differential Privacy, Secure Multi-Party Computation, and Homomorphic Encryption are crucial. These methods ensure that even the derived insights from the data do not compromise individual privacy.
 
-For a deeper dive into these advanced privacy-preserving techniques, read our article on [“”]().
+For a deeper dive into these advanced privacy-preserving techniques, read our article on “[Securing Decentralized Data Science]()”.
 
 ## **Communication Efficiency**
 
@@ -203,7 +208,7 @@ Discover more about optimizing communication in FL in our article on communicati
 
 Addressing the variability in data distribution, computational power, and network connectivity among clients is a significant challenge in FL. This heterogeneity raises questions about model personalization versus the development of a single, unified model.
 
-Explore this further in our articles on [“Vertical Data Partitioning: Challenges and Opportunities”]() and [“Navigating the Complexity of Heterogeneous Data in Decentralized Networks”]().
+Explore this further in our articles on [“Vertical Data Partitioning: Challenges and Opportunities”]() and [“Navigating the Complexity of Heterogeneous Data in Decentralized Networks”](../FL_noniid/index.qmd).
 
 ## **Model Convergence**
 
@@ -213,7 +218,7 @@ The diversity and decentralized nature of FL pose unique challenges to model con
 
 With potentially millions of clients, scalability remains a critical area in FL. Efficient algorithms for client selection, scalable aggregation methods, and robust system architectures are crucial in ensuring the FL system can effectively handle large-scale operations.
 
-## In Conclusion
+# In Conclusion
 
 Federated Learning, while still evolving, stands at the forefront of a new era in machine learning. It offers an ethical, privacy-preserving, and collaborative approach to data analysis and model training. As we continue to face and address the challenges inherent in this field, FL is poised to unlock unprecedented potentials in leveraging collective data for the greater good.
 
