@@ -1,4 +1,17 @@
 /*-- scss:defaults --*/
+
+@font-face{
+  font-family: Tailwind;
+  font-weight: normal;
+  src: url("static/fonts/Tailwind Regular.ttf");
+}
+
+@font-face{
+  font-family: "Tailwind Bold";
+  font-weight: bold;
+  src: url("static/fonts/Tailwind Black.ttf");
+}
+
 $main-color : #5801FF;
 $secondary-color: #FFD600;
 $background-color: #15161F;
