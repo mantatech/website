@@ -48,6 +48,7 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 <!---->
 <!-- Experience real-time data processing with Manta's edge-based approach. -->
 
+::: {.light-section}
 ::: {.container}
 ::: {.values}
 
@@ -79,6 +80,7 @@ Our approach centers on robust data security and adherence to compliance standar
 **Collaborative Intelligence: Bridging Data Gaps Securely**
 
 Manta aims to facilitate secure data collaboration, breaking down corporate silos. Our focus is on fostering secure, innovative partnerships for shared data utilization, enhancing cooperative progress.
+:::
 :::
 :::
 :::
