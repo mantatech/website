@@ -22,7 +22,7 @@ Adventure enthusiast and leader.<br>Combines a deep technical background with a 
 ::: {.profile}
 ![](static/about/cto.jpg)
 
-### Hugo Miralles
+### Benjamin Bourbon
 <span class="role">CTO</span>
 
 A detail-oriented technologist.<br>Benjamin's expertise lies in computer science, AI, and distributed computing.
