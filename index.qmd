@@ -20,7 +20,7 @@ include-after-body:
 </span>
 :::
 ::: {.manta-subtitle}
-<span>Our cutting-edge distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation</span>
+<span>Our distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation</span>
 :::
 :::
 
@@ -34,24 +34,27 @@ include-after-body:
 :::
 
 
-
 ::: {.content}
-::: {.light-section .flex .padding-1}
+::: {.light-section}
 
-::: {.paragraph}
-### Bridge together data silos
-Data silos are isolated data, accessible only by enterprises or sometimes only by local departments. Our platform allows to exploit them together without compromising privacy concerns.
-:::
-
+::: {.flex .justify-content-center .align-items-center .padding-1}
+# Bridge together data silos
 ![](static/home/silos.svg)
+:::
+
+::: {.full-width .text-center}
+In today’s data-driven world, valuable insights often remain trapped within isolated data silos, accessible only to specific departments or entities. Our platform transforms this potential into actionable intelligence. By seamlessly integrating disparate data sources, we empower your enterprise to leverage collective insights without ever compromising on privacy.
+:::
 
 :::
 :::
+
+
 
 ::: {.content}
-::: {.dark-section .padding-2}
+::: {.dark-section .padding-1}
 
-## Take care of your data in your infrastructure
+# Valorize Your Data, Empower Your Infrastructure
 
 ::: {.expressions}
   ![](static/home/data-privacy.svg)
@@ -66,49 +69,60 @@ Data silos are isolated data, accessible only by enterprises or sometimes only b
 :::
 
 ::: {.content}
-::: {.light-section .flex .padding-3}
+::: {.light-section .padding-1}
 
+::: {.flex .justify-content-center .align-items-center}
 ![](static/home/make-ai.svg)
 
-::: {.paragraph}
-### Learn on your device
+# Valorize Data at Its Source with On-Device Learning
+:::
 
-The new paradigm Compute-to-Data allows you to make value on your data directly where your data are produced, on your edge devices.
+::: {.full-width .text-center}
+Our platform pioneers a new paradigm, bringing the power of data processing directly to where your data lives – on your edge devices. This shift means you can now extract value from your data in its natural habitat, ensuring maximum efficiency and immediacy. With Manta, your data doesn’t just exist; it evolves and generates insights in real-time, right at the source. This not only streamlines the data processing workflow but also opens up new horizons for real-time, on-site decision-making.
 :::
 
 :::
 :::
 
 ::: {.content}
-::: {.dark-section .flex .padding-4}
+::: {.dark-section .padding-1}
 
-::: {.paragraph}
-### Communicate knowledges without sharing data
-
-Instead of communicated data to a third service, you communicate models between devices. You have a complete control on your data.
-:::
-
+::: {.flex .justify-content-center .align-items-center}
+# Transform Data into Knowledge, Securely and Privatelyt sharing data
 ::: {.content-animation}
 ![](static/home/communications.svg)
 ![](static/home/neural-network.svg){id="neural-network"}
 :::
+:::
+
+::: {.full-width .text-center}
+- Embrace the New Era of Knowledge Sharing: At Manta, we redefine how knowledge is communicated across devices. Instead of transmitting raw data, our platform enables the exchange of insights.
+- Traceable and Transparent Data Utilization: With Manta, traceability is at the forefront. Our platform not only facilitates the secure exchange of knowledge but also provides a clear audit trail of how data is utilized, enhancing accountability and compliance.:::
+:::
+
+<!-- ::: {.content-animation}
+![](static/home/communications.svg)
+![](static/home/neural-network.svg){id="neural-network"}
+::: -->
 
 :::
 :::
 
 
 ::: {.content}
-::: {.light-section .flex .padding-5}
+::: {.light-section .padding-1}
 
+::: {.flex .justify-content-center .align-items-center}
 ::: {.content-animation}
 ![](static/home/collaboration.svg)
 ![](static/home/handshake.svg){id="handshake"}
 :::
 
-::: {.paragraph}
-### Collaboration without compromising your data
+# Intelligent Collaboration, Uncompromised Privacy
+:::
 
-With Manta, enterprises can collaborate together without sharing or revealing their own data.
+::: {.full-width .text-center}
+Manta empowers businesses to work together in unprecedented ways. By facilitating the exchange of analytical models instead of raw data, we ensure that collaboration enriches your knowledge base while maintaining absolute data privacy and control.
 :::
 
 :::
