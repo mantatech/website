@@ -12,7 +12,7 @@ comments:
 ---
 Federated Learning (FL) has emerged as a transformative approach in the realm of machine learning, enabling collaborative yet privacy-preserving data analysis across multiple entities. This article aims to unravel the intricate layers of Federated Learning, offering a comprehensive understanding for data scientists and enthusiasts alike.
 
-# **What is Federated Learning?**
+# What is Federated Learning?
 
 Federated Learning (FL) emerged as a groundbreaking concept in 2017 when Brendan McMahan and his colleagues introduced the Federated Averaging algorithm [McMahan2017FedAvg]. At its core, FL is a powerful method for training machine learning models across multiple decentralized data sources, such as mobile devices or organizations, without the need to share or transfer the underlying data. This approach has gained significant traction recently, particularly due to its synergistic relationship with emerging technologies in edge computing and distributed learning.
 
@@ -28,11 +28,11 @@ For a more in-depth exploration of how FL is shaping the future of data science 
 
 Now, let's delve deeper into the foundational structures of FL, beginning with the centralized synchronous approach and its underlying mathematical principles.
 
-# **Centralized Synchronous Federated Learning**
+# Centralized Synchronous Federated Learning
 
 Before delving into the specific steps of the Federated Learning process, it's crucial to understand the mathematical foundation that underpins this approach. This understanding is key to appreciating the nuances of various FL configurations and algorithms.
 
-## **Understanding Model Parameterization and Objective Function in Federated Learning**
+## Understanding Model Parameterization and Objective Function in Federated Learning
 
 Before delving into the depths of Federated Learning (FL), it's crucial to establish a foundational understanding of how a machine learning model is learned. This understanding not only illuminates the nuances of FL but also highlights the pivotal role of model parameterization and objective functions in the learning process. The following discussion serves as an introduction to these fundamental concepts, setting the stage for a deeper exploration of FL.
 
@@ -52,7 +52,7 @@ During training, this objective function guides the adjustment of the model's pa
 
 For a more comprehensive dive into the complexities of deep learning models, their parameterization, and the pivotal role of objective functions, readers are recommended to consult "Deep Learning" by Goodfellow, Bengio, and Courville [@Goodfellow-et-al-2016]. This resource offers an extensive examination of neural networks and deep learning fundamentals, providing an essential foundation for these critical aspects of modern machine learning.
 
-### **Optimizing the Global Model: The Central Objective Function in Federated Learning**
+### Optimizing the Global Model: The Central Objective Function in Federated Learning
 
 In traditional Federated Learning, the primary aim is to develop a global model that serves the collective learning interests of all participating clients. This is commonly achieved through an objective function designed to minimize the overall loss. The function described here is one of the most prevalent forms for constructing a shared global model. However, it's important to note that Federated Learning is a versatile framework, capable of accommodating a variety of objective functions to cater to diverse learning goals. These can range from crafting personalized models tailored to individual client characteristics, to developing meta-models or multi-task models that address a broader spectrum of learning tasks.
 
@@ -74,11 +74,11 @@ where  denotes the average loss over the data of client $i$. The total number of
 
 This equation represents the heart of Federated Learning in a centralized synchronous setting: the minimization of the weighted average of local losses, where the weight is proportional to the number of data points per client.
 
-## **The Iterative Process of Federated Learning**
+## The Iterative Process of Federated Learning
 
 In Federated Learning (FL), the core principle is to collaboratively minimize a global loss function, reflecting the collective learning objectives of all participants. This process involves an intricate interplay between local optimizations on client devices and global model improvements, ensuring that learning on disparate local data doesn't compromise the overall model's effectiveness.
 
-### **The Steps of Federated Learning**
+### The Steps of Federated Learning
 
 1. **Client Selection**
 
@@ -102,7 +102,7 @@ The server aggregates these individual updates to update the global model. This 
 
 Through these steps, the FL process iteratively converges towards a model that effectively captures the collective intelligence of all participating clients.
 
-## **Federated Averaging (FedAvg) Explained**
+## Federated Averaging (FedAvg) Explained
 
 Federated Averaging, or FedAvg, proposed by McMahan et al., serves as a quintessential example of applying these FL steps in a centralized synchronous environment [@McMahan2017FedAvg]. The objective function can be formulated as:
 
@@ -133,23 +133,23 @@ This cycle of local training and server-side aggregation forms the crux of the F
 
 While Federated Averaging is a staple in centralized synchronous FL, the field also encompasses diverse configurations suited for various data and collaboration scenarios. Let's explore these configurations next.
 
-# **Exploring the Diverse Configurations of Federated Learning**
+# Exploring the Diverse Configurations of Federated Learning
 
 Federated Learning (FL) isn't a one-size-fits-all approach; it offers a spectrum of configurations tailored to different data structures and collaboration needs. The beauty of FL lies in its flexibility to adapt to various data arrangements and collaboration requirements. While centralized synchronous FL is a widely discussed paradigm, the landscape of FL is much broader.
 
-## Horizontal Federated Learning (HFL): **Expanding the Dataset**
+## Horizontal Federated Learning (HFL): Expanding the Dataset
 
 In Horizontal Federated Learning, the focus is on enlarging the dataset through a collection of diverse samples while maintaining a consistent feature space. Mathematically, if we consider a set of clients $C = {c_1, c_2, ..., c_n}$, each client $c_i$ possesses a dataset $D_i = {(x_{i1}, y_{i1}), ..., (x_{im}, y_{im})}$ where $x_{ij}$ are the features, and $y_{ij}$ are the labels. In HFL, all clients share the same feature set, i.e., $x_{ij}$ in $D_i$ and $x_{kj}$ in  are of the same dimension and nature, but the samples (pairs of $x_{ij}$ and $y_{ij}$) differ across clients.
 
 **Increase in Data Volume:** By aggregating samples from multiple clients, HFL effectively increases the overall size of the training dataset. This can lead to improved model performance, especially in scenarios where data is abundant but fragmented across many users or devices. HFL leverages the diversity inherent in distributed data sources, potentially leading to more robust and generalizable models.
 
-## Vertical Federated Learning (VFL): **Enriching Data Features**
+## Vertical Federated Learning (VFL): Enriching Data Features
 
 Vertical Federated Learning comes into play when different clients possess different sets of features for the same samples. Consider the same set of clients $C$. In VFL, client $c_i$ holds a dataset $D_i = {(x_{i1}, y_{i1}), ..., (x_{im}, y_{im})}$, but here, $x_{ij}$ and $x_{kj}$ in datasets $D_i$ and $D_k$ of different clients may have different dimensions or types of features for the same $y_{ij}$.
 
 **Enhanced Feature Set:** VFL allows models to access a more comprehensive set of features per sample, potentially leading to more accurate predictions. This is especially beneficial in scenarios where no single entity has a complete view of the data, but a collective effort can provide a more holistic understanding. With access to a richer set of features, models can capture more complex relationships in the data, which might not be possible with a limited feature set.
 
-## **Navigating the Configurations of Decentralized Federated Learning**
+## Navigating the Configurations of Decentralized Federated Learning
 
 Federated Learning (FL) transcends the conventional centralized model, embracing more nuanced and flexible structures.
 
@@ -171,13 +171,13 @@ In response to these challenges, there's a growing focus on developing workflows
 
 Federated Learning (FL) is not just about how data is shared and processed, but also about when it happens. This timing aspect is crucially defined in the synchronous and asynchronous paradigms of FL. Each approach has its merits and challenges, especially when considering the balance between overall system efficiency and fairness among participants.
 
-### **Synchronous FL: Uniform Updates**
+### Synchronous FL: Uniform Updates
 
 In synchronous Federated Learning, all participating clients are required to update their models simultaneously. This synchronization ensures uniformity in the learning process, as every client contributes to each training round. However, this method can lead to inefficiencies, particularly in scenarios involving a wide range of devices with varying computational capabilities.
 
 The primary drawback of synchronous FL is its susceptibility to delays caused by slower clients, often referred to as stragglers. The entire system's progress is pegged to the pace of the slowest participant, which can significantly prolong the training process.
 
-### **Asynchronous FL: Flexible and Fast**
+### Asynchronous FL: Flexible and Fast
 
 Asynchronous FL, on the other hand, allows clients to update their models at different times. This flexibility can greatly enhance the system's efficiency by not having to wait for the slower clients.
 
@@ -188,33 +188,33 @@ Asynchronous FL, on the other hand, allows clients to update their models at dif
 
 While asynchronous FL offers advantages in terms of efficiency, it requires careful handling to avoid degradation in the learning performance. If not managed properly, the model may converge slower or to a less optimal state due to the lack of coordinated updates.
 
-# **Navigating the Future of Federated Learning: Challenges and Opportunities**
+# Navigating the Future of Federated Learning: Challenges and Opportunities
 
 As we have explored throughout this article, Federated Learning (FL) represents a significant shift in the landscape of machine learning and data science. By enabling collaborative model training across decentralized data sources while maintaining data privacy, FL addresses some of the most pressing concerns in the digital world. However, this innovative approach also brings its own set of challenges, each opening doors to further exploration and innovation in the realm of decentralized data science.
 
-## **Data Privacy and Security**
+## Data Privacy and Security
 
 FL inherently enhances data privacy by keeping data localized, but this is just the beginning. To fortify data security further, techniques like Differential Privacy, Secure Multi-Party Computation, and Homomorphic Encryption are crucial. These methods ensure that even the derived insights from the data do not compromise individual privacy.
 
 For a deeper dive into these advanced privacy-preserving techniques, read our article on [Securing Decentralized Data Science]().
 
-## **Communication Efficiency**
+## Communication Efficiency
 
 The efficiency of FL is heavily reliant on the communication protocols used. Reducing the volume of data exchanged and compressing the data effectively are essential strategies. These approaches help in managing the bandwidth constraints and making the FL process more viable and efficient.
 
 Discover more about optimizing communication in FL in our article on communication efficiency strategies.
 
-## **Heterogeneity**
+## Heterogeneity
 
 Addressing the variability in data distribution, computational power, and network connectivity among clients is a significant challenge in FL. This heterogeneity raises questions about model personalization versus the development of a single, unified model.
 
 Explore this further in our articles on "[Vertical Data Partitioning: Challenges and Opportunities]()" and "[Navigating the Complexity of Heterogeneous Data in Decentralized Networks](../FL_noniid/index.qmd)".
 
-## **Model Convergence**
+## Model Convergence
 
 The diversity and decentralized nature of FL pose unique challenges to model convergence. Advanced aggregation techniques and robust training algorithms play a pivotal role in addressing this issue, ensuring the global model effectively learns from the distributed data.
 
-## **Scalability**
+## Scalability
 
 With potentially millions of clients, scalability remains a critical area in FL. Efficient algorithms for client selection, scalable aggregation methods, and robust system architectures are crucial in ensuring the FL system can effectively handle large-scale operations.
 
