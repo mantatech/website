@@ -1,12 +1,12 @@
 /*-- scss:defaults --*/
 
-@font-face{
+@font-face {
   font-family: Tailwind;
   font-weight: normal;
   src: url("static/fonts/Tailwind Regular.ttf");
 }
 
-@font-face{
+@font-face {
   font-family: "Tailwind Bold";
   font-weight: bold;
   src: url("static/fonts/Tailwind Black.ttf");
@@ -30,7 +30,10 @@ $body-color: $text-color;
 
 // Common properties {{{
 
-h1, h2, h3, h4{
+h1,
+h2,
+h3,
+h4 {
   color: $text-color;
 }
 
@@ -47,7 +50,7 @@ span.navbar-title {
 
 // Properties {{{
 
-.light-section{
+.light-section {
   background: #252737;
   text-align: center;
 }
@@ -57,15 +60,30 @@ span.navbar-title {
   border: none;
 }
 
-.expressions > p {
-  display: flex!important;
+.expressions>p {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  // display: flex !important;
   flex-direction: column;
   gap: 25px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
+  // column-count: 3;
+  text-align: center;
 }
 
-.dark-section{
+.expressions>p>img {
+  justify-content: center;
+  display: flex;
+}
+
+.expressions>p>span {
+  justify-content: center;
+  display: flex;
+  text-align: center;
+}
+
+.dark-section {
   background: $background-color;
   text-align: center;
 }
@@ -75,8 +93,8 @@ span.navbar-title {
   border: none;
 }
 
-.distribute{
-  display: flex!important;
+.distribute {
+  display: flex !important;
   position: relative;
   z-index: 1;
   flex-direction: column;
@@ -87,11 +105,11 @@ span.navbar-title {
 }
 
 .header {
-  background: linear-gradient(0deg, rgba(27,0,79,1) 0%, rgba(21,22,31,1) 100%);
+  background: linear-gradient(0deg, rgba(27, 0, 79, 1) 0%, rgba(21, 22, 31, 1) 100%);
 }
 
-.flex{
-  display: flex!important;
+.flex {
+  display: flex !important;
   flex-direction: column;
   text-align: center;
   gap: 7vw;
@@ -104,7 +122,7 @@ span.navbar-title {
 // Media specifications {{{
 
 @media (min-width: 960px) {
-  .expressions > p {
+  .expressions>p {
     flex-direction: row;
   }
 
@@ -113,7 +131,7 @@ span.navbar-title {
     padding: 0 2vw;
   }
 
-  .flex{
+  .flex {
     flex-direction: row;
   }
 }

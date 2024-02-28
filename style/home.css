@@ -1,18 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
-/* Common properties {{{ */ 
+/* Common properties {{{ */
 
-#quarto-content>*{
+#quarto-content>* {
   padding-top: 0px;
+}
+
+.part>section>h2 {
+  margin: Oem;
+  padding: 1em 0;
 }
 
 p {
   margin-top: 0px;
   margin-bottom: 0px;
 }
-/* }}} */ 
 
-/* Animations {{{ */ 
+/* }}} */
+
+/* Animations {{{ */
 
 @keyframes textclip {
   to {
@@ -25,21 +31,25 @@ p {
     filter: brightness(0) saturate(100%) invert(9%) sepia(95%) saturate(7492%) hue-rotate(265deg) brightness(105%) contrast(130%);
     transform: translateX(0%);
   }
+
   49% {
     filter: brightness(0) saturate(100%) invert(9%) sepia(95%) saturate(7492%) hue-rotate(265deg) brightness(105%) contrast(130%);
     transform: translateX(600%);
     visibility: hidden;
   }
+
   50% {
     visibility: hidden;
     filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
     transform: translate(600%, 200%);
   }
+
   51% {
     visibility: none;
     filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
     transform: translate(600%, 200%);
   }
+
   100% {
     filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
     transform: translate(0%, 200%);
@@ -50,31 +60,33 @@ p {
   0% {
     transform: translateY(-10%);
   }
+
   100% {
     transform: translateY(10%);
   }
 }
-/* }}} */ 
 
-/* Properties {{{ */ 
+/* }}} */
 
-.pixels{
+/* Properties {{{ */
+
+.pixels {
   height: 92vh;
   /* border-bottom: 1px solid $text-color!important */
   position: absolute;
 }
 
-.title{
+.title {
   width: 80%;
 }
 
-.manta-title{
+.manta-title {
   font-size: 1.2em;
   text-align: center;
   vertical-align: middle;
 }
 
-.manta-subtitle{
+.manta-subtitle {
   font-size: 0.9em;
   text-align: center;
   vertical-align: middle;
@@ -83,13 +95,11 @@ p {
 .manta-title .inside {
   font-family: Pixelify Sans;
   /* font-weight: bold; */
-  background-image: linear-gradient(
-    -225deg,
-    #E1E1E1 0%,
-    #5801FF 29%,
-    #FF1361 67%,
-    #FFD600 100%
-  );
+  background-image: linear-gradient(-225deg,
+      #E1E1E1 0%,
+      #5801FF 29%,
+      #FF1361 67%,
+      #FFD600 100%);
   background-size: auto auto;
   background-clip: border-box;
   background-size: 200% auto;
@@ -137,7 +147,7 @@ p {
   width: 80%;
 }
 
-#gear{
+#gear {
   width: 7%;
   filter: invert();
   position: absolute;
@@ -168,19 +178,21 @@ p {
   left: 45%;
   animation: collaboration 1s ease-in-out infinite alternate;
 }
-/* }}} */ 
 
-/* Media specifications {{{ */ 
+/* }}} */
+
+/* Media specifications {{{ */
 
 @media (min-width: 960px) {
   .manta-title {
     font-size: 40px;
   }
+
   .manta-subtitle {
     font-size: 30px;
   }
 
-  .title{
+  .title {
     width: 50%;
   }
 
@@ -192,4 +204,5 @@ p {
     max-width: 30%;
   }
 }
-/* }}} */ 
+
+/* }}} */

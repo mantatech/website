@@ -56,14 +56,40 @@ In today’s data-driven world, valuable insights often remain trapped within is
 
 # Valorize Your Data, Empower Your Infrastructure
 
-::: {.expressions}
-  ![](static/home/data-privacy.svg)
-  <span>Learning without sharing data</span>
-  ![](static/home/chip.svg)
-  <span>Take advantage of the power of edge computing</span>
-  ![](static/home/cost.svg)
-  <span>Reduce cost of data processing</span>
+::: {.flex}
+
+::: {.part}
+![](static/home/data-privacy.svg)
+
+## Harness In-House Data Insights
+With Manta, dive into the depths of your data. Analyze and train models directly within your infrastructure, keeping your data securely in-house and eliminating the need for third-party data handling.
 :::
+
+::: {.part}
+![](static/home/chip.svg)
+
+## Leverage Edge Computing for Smarter Processing
+Utilize the latent power of your edge devices for on-site data analysis and model training. Experience the efficiency of processing data where it's generated, unlocking new potentials in speed and responsiveness.
+:::
+
+::: {.part}
+![](static/home/cost.svg)
+
+## Slash Your Data Processing Costs
+Say goodbye to hefty cloud storage fees and data transfer costs. With Manta, the only investment is in your existing edge infrastructure, paving the way for more economical and efficient data management.
+:::
+
+:::
+
+<!-- ::: {.expressions}
+  ![](static/home/data-privacy.svg)
+  ![](static/home/chip.svg)
+  ![](static/home/cost.svg)
+
+  <span>Learning without sharing data</span>
+  <span>Take advantage of the power of edge computing</span>
+  <span>Reduce cost of data processing</span>
+::: -->
 
 :::
 :::
@@ -75,10 +101,8 @@ In today’s data-driven world, valuable insights often remain trapped within is
 ![](static/home/make-ai.svg)
 
 # Valorize Data at Its Source with On-Device Learning
-:::
-
-::: {.full-width .text-center}
 Our platform pioneers a new paradigm, bringing the power of data processing directly to where your data lives – on your edge devices. This shift means you can now extract value from your data in its natural habitat, ensuring maximum efficiency and immediacy. With Manta, your data doesn’t just exist; it evolves and generates insights in real-time, right at the source. This not only streamlines the data processing workflow but also opens up new horizons for real-time, on-site decision-making.
+
 :::
 
 :::
@@ -97,7 +121,7 @@ Our platform pioneers a new paradigm, bringing the power of data processing dire
 
 ::: {.full-width .text-center}
 - Embrace the New Era of Knowledge Sharing: At Manta, we redefine how knowledge is communicated across devices. Instead of transmitting raw data, our platform enables the exchange of insights.
-- Traceable and Transparent Data Utilization: With Manta, traceability is at the forefront. Our platform not only facilitates the secure exchange of knowledge but also provides a clear audit trail of how data is utilized, enhancing accountability and compliance.:::
+- Traceable and Transparent Data Utilization: With Manta, traceability is at the forefront. Our platform not only facilitates the secure exchange of knowledge but also provides a clear audit trail of how data is utilized, enhancing accountability and compliance.
 :::
 
 <!-- ::: {.content-animation}
