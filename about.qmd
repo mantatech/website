@@ -1,12 +1,14 @@
 ---
 title: "About us"
-page-layout: custom
+# page-layout: custom
+page-layout: full
+title-block-banner: "#5801FF"
 css: style/about.css
 ---
 
 ::: {.team}
 
-## Our Team : Swimming into the Depths of Innovation
+# Our Team : Swimming into the Depths of Innovation
 
 ::: {.flex}
 
@@ -52,14 +54,14 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 ::: {.container}
 ::: {.values}
 
-## Our Values
+# Our Values
 
 ::: {.flex}
 ::: {.part}
 
 ![](static/about/values1.png){class="filter-img"}
 
-**Edge Efficiency: Smarter Spending for Smarter Data**
+## Edge Efficiency: Smarter Spending for Smarter Data
 
 Manta focuses on redefining data processing economics. We emphasize efficient, cost-effective solutions, leveraging edge computing for economic advantage while maximizing data utility at its source.
 :::
@@ -68,7 +70,7 @@ Manta focuses on redefining data processing economics. We emphasize efficient, c
 
 ![](static/about/values2.png){class="filter-img"}
 
-**Guardians of Data: Secure, Compliant, Traceable**
+## Guardians of Data: Secure, Compliant, Traceable
 
 Our approach centers on robust data security and adherence to compliance standards like GDPR. We prioritize maintaining data integrity, ensuring security, and offering traceable data management.
 :::
@@ -77,7 +79,7 @@ Our approach centers on robust data security and adherence to compliance standar
 
 ![](static/about/values3.png){class="filter-img"}
 
-**Collaborative Intelligence: Bridging Data Gaps Securely**
+## Collaborative Intelligence: Bridging Data Gaps Securely
 
 Manta aims to facilitate secure data collaboration, breaking down corporate silos. Our focus is on fostering secure, innovative partnerships for shared data utilization, enhancing cooperative progress.
 :::
@@ -90,37 +92,42 @@ Manta aims to facilitate secure data collaboration, breaking down corporate silo
 ::: {.container}
 ::: {.missions}
 
-## Our Missions
+# Our Missions
 
-::: {.missions-items}
-::: {.item}
+<!-- ::: {.missions-items}
+::: {.item} -->
+::: {.flex}
+::: {.part}
 ![](static/about/missions1.png)
 
-**Trust in every process: Secure Data, Secure Operations**   
+## Trust in every process: Secure Data, Secure Operations
 
 Our mission is to ensure data security and reliable operations, fostering trust with robust environments where data confidentiality and integrity are paramount.
 :::
 
-::: {.item}
+<!-- ::: {.item} -->
+::: {.part}
 ![](static/about/missions2.png)
 
-**Scale with simplicity: Extend your World with Decentralization**
+## Scale with simplicity: Extend your World with Decentralization
 
 We focus on simplifying scalability in digital environments, offering edge computing solutions for seamless business expansion and resilient decentralized collaboration.
 :::
 
-::: {.item}
+<!-- ::: {.item} -->
+::: {.part}
 ![](static/about/missions3.png){class="special"}
 
-**Operate and Monitor: Command your Digital Frontier**
+## Operate and Monitor: Command your Digital Frontier
 
 Manta prioritizes empowering users with tools for effective management and oversight of their digital operations, emphasizing intuitive control and monitoring.
 :::
 
-::: {.item}
+<!-- ::: {.item} -->
+::: {.part}
 ![](static/about/missions4.png)
 
-**Seamless exploration: Focus on Value, Not Complexity**
+## Seamless exploration: Focus on Value, Not Complexity
 
 Our goal is to streamline data analysis and model training, enabling professionals to focus on deriving value and innovation from their data, free from technical complexities.
 :::
