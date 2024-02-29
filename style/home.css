@@ -3,17 +3,23 @@
 /* Common properties {{{ */
 
 #quarto-content>* {
-  padding-top: 0px;
+  padding-top: 10vh;
 }
 
-.part>section>h2 {
-  margin: Oem;
-  padding: 1em 0;
+li {
+  text-align: justify;
 }
 
-p {
-  margin-top: 0px;
-  margin-bottom: 0px;
+/* * { */
+/*   box-sizing: content-box; */
+/* } */
+
+section > p {
+  text-align: justify;
+}
+
+h1, h2, h3 {
+  margin: 3vh 0;
 }
 
 /* }}} */
@@ -76,18 +82,15 @@ p {
   position: absolute;
 }
 
-.title {
-  width: 80%;
-}
-
 .manta-title {
-  font-size: 1.2em;
+  font-size: 2rem;
   text-align: center;
   vertical-align: middle;
+  margin-bottom: 1.5rem;
 }
 
 .manta-subtitle {
-  font-size: 0.9em;
+  font-size: 1rem;
   text-align: center;
   vertical-align: middle;
 }
@@ -111,24 +114,8 @@ p {
   display: inline-block;
 }
 
-.padding-1 {
-  padding: 10vh 0;
-}
-
-.padding-2 {
-  padding: 15vh 0;
-}
-
-.padding-3 {
-  padding: 10vh 0;
-}
-
-.padding-4 {
-  padding: 25vh 0;
-}
-
-.padding-5 {
-  padding: 25vh 0;
+.content-block {
+  max-width: 1280px;
 }
 
 .content-animation {
@@ -138,13 +125,22 @@ p {
 
 .overview {
   overflow: hidden;
-  width: 80%;
+  width: 100%;
   text-align: center;
   position: relative;
 }
 
+.overview > p {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
 #overview {
   width: 80%;
+}
+
+#make-ai {
+  width: 60%;
 }
 
 #gear {
@@ -185,23 +181,31 @@ p {
 
 @media (min-width: 960px) {
   .manta-title {
-    font-size: 40px;
+    font-size: 2.25rem;
   }
 
   .manta-subtitle {
-    font-size: 30px;
+    font-size: 1.15rem;
   }
 
-  .title {
-    width: 50%;
+  .manta-title .inside {
+    display: initial;
   }
 
   .overview {
-    width: 40%;
+    max-width: 840px;
   }
 
   .paragraph {
     max-width: 30%;
+  }
+
+  .img-fluid {
+    max-width: none;
+  }
+
+  #make-ai {
+    width: initial;
   }
 }
 

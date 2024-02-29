@@ -19,5 +19,5 @@ format:
   html:
     theme: [zephyr, style/theme.scss]
     mainfont: Tailwind
-    fontsize: 1.15em
+    fontsize: 1.0rem
     toc: false

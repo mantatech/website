@@ -50,7 +50,7 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 <!---->
 <!-- Experience real-time data processing with Manta's edge-based approach. -->
 
-::: {.light-section}
+::: {.dark-section}
 ::: {.container}
 ::: {.values}
 
@@ -94,38 +94,33 @@ Manta aims to facilitate secure data collaboration, breaking down corporate silo
 
 # Our Missions
 
-<!-- ::: {.missions-items}
-::: {.item} -->
-::: {.flex}
-::: {.part}
-![](static/about/missions1.png)
+::: {.grid-content}
+::: {.grid-item}
+![](static/about/missions1.png){class="resize"}
 
 ## Trust in every process: Secure Data, Secure Operations
 
 Our mission is to ensure data security and reliable operations, fostering trust with robust environments where data confidentiality and integrity are paramount.
 :::
 
-<!-- ::: {.item} -->
-::: {.part}
-![](static/about/missions2.png)
+::: {.grid-item}
+![](static/about/missions2.png){class="resize"}
 
 ## Scale with simplicity: Extend your World with Decentralization
 
 We focus on simplifying scalability in digital environments, offering edge computing solutions for seamless business expansion and resilient decentralized collaboration.
 :::
 
-<!-- ::: {.item} -->
-::: {.part}
-![](static/about/missions3.png){class="special"}
+::: {.grid-item}
+![](static/about/missions3.png){class="special resize"}
 
 ## Operate and Monitor: Command your Digital Frontier
 
 Manta prioritizes empowering users with tools for effective management and oversight of their digital operations, emphasizing intuitive control and monitoring.
 :::
 
-<!-- ::: {.item} -->
-::: {.part}
-![](static/about/missions4.png)
+::: {.grid-item}
+![](static/about/missions4.png){class="resize"}
 
 ## Seamless exploration: Focus on Value, Not Complexity
 
