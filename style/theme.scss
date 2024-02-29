@@ -111,6 +111,33 @@ span.navbar-title {
   align-items: center;
 }
 
+[rel="contact-us"] {
+  font-size: 1.2em;
+  border-radius: 30px!important;
+  color: $main-color;
+  background: $secondary-color;
+  border: 1px solid $text-color;
+  font-weight: bold;
+  padding: 0.5rem 2rem!important;
+}
+
+.contact-us {
+  font-size: 1.15rem;
+  background: $secondary-color;
+  padding: 1rem 2rem;
+  border-radius: 2rem;
+}
+
+.contact-us > p > a {
+  color: $main-color;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.contact-us > p {
+  margin: 0;
+}
+
 /// }}}
 
 // Media specifications {{{

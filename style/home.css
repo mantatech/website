@@ -135,6 +135,10 @@ h1, h2, h3 {
   margin-bottom: 0px;
 }
 
+.contact {
+  margin-top: 3rem;
+}
+
 #overview {
   width: 80%;
 }

@@ -122,4 +122,12 @@ Manta empowers businesses to work together in unprecedented ways. By facilitatin
 :::
 :::
 
+
+::: {.contact}
+# Let's keep in touch
+::: {.contact-us}
+  <a href="mailto:manta@manta-tech.io">Contact us</a>
+:::
+:::
+
 :::
