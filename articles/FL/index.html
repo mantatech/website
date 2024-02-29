@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-02-09">
+
+<title>manta - Demystifying Federated Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">manta</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="mailto:manta@mantatech.io" rel="contact-us"> 
+<span class="menu-text">Contact us</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-federated-learning" id="toc-what-is-federated-learning" class="nav-link active" data-scroll-target="#what-is-federated-learning">What is Federated Learning?</a></li>
+  <li><a href="#centralized-synchronous-federated-learning" id="toc-centralized-synchronous-federated-learning" class="nav-link" data-scroll-target="#centralized-synchronous-federated-learning">Centralized Synchronous Federated Learning</a>
+  <ul class="collapse">
+  <li><a href="#understanding-model-parameterization-and-objective-function-in-federated-learning" id="toc-understanding-model-parameterization-and-objective-function-in-federated-learning" class="nav-link" data-scroll-target="#understanding-model-parameterization-and-objective-function-in-federated-learning">Understanding Model Parameterization and Objective Function in Federated Learning</a>
+  <ul class="collapse">
+  <li><a href="#understanding-model-parameterization-and-the-objective-function" id="toc-understanding-model-parameterization-and-the-objective-function" class="nav-link" data-scroll-target="#understanding-model-parameterization-and-the-objective-function">Understanding Model Parameterization and the Objective Function</a></li>
+  <li><a href="#optimizing-the-global-model-the-central-objective-function-in-federated-learning" id="toc-optimizing-the-global-model-the-central-objective-function-in-federated-learning" class="nav-link" data-scroll-target="#optimizing-the-global-model-the-central-objective-function-in-federated-learning">Optimizing the Global Model: The Central Objective Function in Federated Learning</a></li>
+  </ul></li>
+  <li><a href="#the-iterative-process-of-federated-learning" id="toc-the-iterative-process-of-federated-learning" class="nav-link" data-scroll-target="#the-iterative-process-of-federated-learning">The Iterative Process of Federated Learning</a>
+  <ul class="collapse">
+  <li><a href="#the-steps-of-federated-learning" id="toc-the-steps-of-federated-learning" class="nav-link" data-scroll-target="#the-steps-of-federated-learning">The Steps of Federated Learning</a></li>
+  </ul></li>
+  <li><a href="#federated-averaging-fedavg-explained" id="toc-federated-averaging-fedavg-explained" class="nav-link" data-scroll-target="#federated-averaging-fedavg-explained">Federated Averaging (FedAvg) Explained</a>
+  <ul class="collapse">
+  <li><a href="#local-training-on-edge-nodes" id="toc-local-training-on-edge-nodes" class="nav-link" data-scroll-target="#local-training-on-edge-nodes">Local Training on Edge Nodes</a></li>
+  <li><a href="#aggregation-on-the-server-side" id="toc-aggregation-on-the-server-side" class="nav-link" data-scroll-target="#aggregation-on-the-server-side">Aggregation on the Server Side</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#exploring-the-diverse-configurations-of-federated-learning" id="toc-exploring-the-diverse-configurations-of-federated-learning" class="nav-link" data-scroll-target="#exploring-the-diverse-configurations-of-federated-learning">Exploring the Diverse Configurations of Federated Learning</a>
+  <ul class="collapse">
+  <li><a href="#horizontal-federated-learning-hfl-expanding-the-dataset" id="toc-horizontal-federated-learning-hfl-expanding-the-dataset" class="nav-link" data-scroll-target="#horizontal-federated-learning-hfl-expanding-the-dataset">Horizontal Federated Learning (HFL): Expanding the Dataset</a></li>
+  <li><a href="#vertical-federated-learning-vfl-enriching-data-features" id="toc-vertical-federated-learning-vfl-enriching-data-features" class="nav-link" data-scroll-target="#vertical-federated-learning-vfl-enriching-data-features">Vertical Federated Learning (VFL): Enriching Data Features</a></li>
+  <li><a href="#navigating-the-configurations-of-decentralized-federated-learning" id="toc-navigating-the-configurations-of-decentralized-federated-learning" class="nav-link" data-scroll-target="#navigating-the-configurations-of-decentralized-federated-learning">Navigating the Configurations of Decentralized Federated Learning</a>
+  <ul class="collapse">
+  <li><a href="#centralized-fl" id="toc-centralized-fl" class="nav-link" data-scroll-target="#centralized-fl">Centralized FL</a></li>
+  <li><a href="#hierarchical-fl" id="toc-hierarchical-fl" class="nav-link" data-scroll-target="#hierarchical-fl">Hierarchical FL</a></li>
+  <li><a href="#peer-to-peer-fl" id="toc-peer-to-peer-fl" class="nav-link" data-scroll-target="#peer-to-peer-fl">Peer-to-Peer FL</a></li>
+  </ul></li>
+  <li><a href="#synchronous-vs.-asynchronous-fl" id="toc-synchronous-vs.-asynchronous-fl" class="nav-link" data-scroll-target="#synchronous-vs.-asynchronous-fl">Synchronous vs.&nbsp;Asynchronous FL</a>
+  <ul class="collapse">
+  <li><a href="#synchronous-fl-uniform-updates" id="toc-synchronous-fl-uniform-updates" class="nav-link" data-scroll-target="#synchronous-fl-uniform-updates">Synchronous FL: Uniform Updates</a></li>
+  <li><a href="#asynchronous-fl-flexible-and-fast" id="toc-asynchronous-fl-flexible-and-fast" class="nav-link" data-scroll-target="#asynchronous-fl-flexible-and-fast">Asynchronous FL: Flexible and Fast</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#navigating-the-future-of-federated-learning-challenges-and-opportunities" id="toc-navigating-the-future-of-federated-learning-challenges-and-opportunities" class="nav-link" data-scroll-target="#navigating-the-future-of-federated-learning-challenges-and-opportunities">Navigating the Future of Federated Learning: Challenges and Opportunities</a>
+  <ul class="collapse">
+  <li><a href="#data-privacy-and-security" id="toc-data-privacy-and-security" class="nav-link" data-scroll-target="#data-privacy-and-security">Data Privacy and Security</a></li>
+  <li><a href="#communication-efficiency" id="toc-communication-efficiency" class="nav-link" data-scroll-target="#communication-efficiency">Communication Efficiency</a></li>
+  <li><a href="#heterogeneity" id="toc-heterogeneity" class="nav-link" data-scroll-target="#heterogeneity">Heterogeneity</a></li>
+  <li><a href="#model-convergence" id="toc-model-convergence" class="nav-link" data-scroll-target="#model-convergence">Model Convergence</a></li>
+  <li><a href="#scalability" id="toc-scalability" class="nav-link" data-scroll-target="#scalability">Scalability</a></li>
+  </ul></li>
+  <li><a href="#in-conclusion" id="toc-in-conclusion" class="nav-link" data-scroll-target="#in-conclusion">In Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Demystifying Federated Learning</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">machine learning</div>
+    <div class="quarto-category">decentralization</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 9, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Federated Learning (FL) has emerged as a transformative approach in the realm of machine learning, enabling collaborative yet privacy-preserving data analysis across multiple entities. This article aims to unravel the intricate layers of Federated Learning, offering a comprehensive understanding for data scientists and enthusiasts alike.</p>
+<section id="what-is-federated-learning" class="level1">
+<h1>What is Federated Learning?</h1>
+<p>Federated Learning (FL) emerged as a groundbreaking concept in 2017 when Brendan McMahan and his colleagues introduced the Federated Averaging algorithm [McMahan2017FedAvg]. At its core, FL is a powerful method for training machine learning models across multiple decentralized data sources, such as mobile devices or organizations, without the need to share or transfer the underlying data. This approach has gained significant traction recently, particularly due to its synergistic relationship with emerging technologies in edge computing and distributed learning.</p>
+<p>One of the most compelling advantages of FL is its inherent focus on privacy and security. By keeping data localized on clients’ devices, FL significantly reduces the risks associated with data breaches and misuse. This aspect of FL aligns well with the increasing global emphasis on data privacy regulations.</p>
+<p>FL also diminishes the heavy reliance on centralized cloud infrastructures. By leveraging the computational power of edge devices, FL allows for more scalable and efficient data processing. This decentralized approach not only minimizes latency but also reduces bandwidth and storage costs associated with large-scale data transmission to the cloud.</p>
+<p>The recent surge in interest around FL is closely tied to the advancements in edge computing. As computational capabilities at the edge of networks continue to grow, so does the feasibility of implementing more complex and powerful FL models directly where the data is generated.</p>
+<p>Coupled with the edge compute revolution is the shift towards distributed learning paradigms. FL is at the forefront of this shift, offering a collaborative yet decentralized model training approach. It presents a viable solution to harness the collective power of data while respecting individual privacy and reducing the load on central servers.</p>
+<p>For a more in-depth exploration of how FL is shaping the future of data science and its integration with decentralized systems, readers are encouraged to refer to our previous article, “<a href="../../articles/decentralization/index.html">The New Frontier: Data Science in the Decentralized Era.</a>” This article delves deeper into the synergies between decentralized data science, edge computing, and the broader implications for the field of data science.</p>
+<p>Now, let’s delve deeper into the foundational structures of FL, beginning with the centralized synchronous approach and its underlying mathematical principles.</p>
+</section>
+<section id="centralized-synchronous-federated-learning" class="level1">
+<h1>Centralized Synchronous Federated Learning</h1>
+<p>Before delving into the specific steps of the Federated Learning process, it’s crucial to understand the mathematical foundation that underpins this approach. This understanding is key to appreciating the nuances of various FL configurations and algorithms.</p>
+<section id="understanding-model-parameterization-and-objective-function-in-federated-learning" class="level2">
+<h2 class="anchored" data-anchor-id="understanding-model-parameterization-and-objective-function-in-federated-learning">Understanding Model Parameterization and Objective Function in Federated Learning</h2>
+<p>Before delving into the depths of Federated Learning (FL), it’s crucial to establish a foundational understanding of how a machine learning model is learned. This understanding not only illuminates the nuances of FL but also highlights the pivotal role of model parameterization and objective functions in the learning process. The following discussion serves as an introduction to these fundamental concepts, setting the stage for a deeper exploration of FL.</p>
+<section id="understanding-model-parameterization-and-the-objective-function" class="level3">
+<h3 class="anchored" data-anchor-id="understanding-model-parameterization-and-the-objective-function">Understanding Model Parameterization and the Objective Function</h3>
+<p><strong>Model Parameterized by Theta (<span class="math inline">\(\theta\)</span>)</strong></p>
+<p>In both machine learning and Federated Learning, a model is essentially a mathematical function designed for making predictions or decisions based on input data. This function is parameterized by <span class="math inline">\(\theta\)</span>, representing the set of all parameters or weights in the model. For example, in a neural network, these parameters are the weights and biases of the network’s layers.</p>
+<p>The significance of these parameters is paramount. They are essentially what the model ‘learns’ during its training. As data is fed into the model, it processes this data through its parameters to generate predictions or decisions. The accuracy and reliability of these predictions are heavily dependent on the values of these parameters, emphasizing the importance of the learning process in determining the most effective set of parameter values.</p>
+<p><strong>The Role of the Objective Function</strong></p>
+<p>Central to the learning algorithm is the objective function, often termed the loss function. It quantitatively measures the discrepancy between the model’s predictions and the actual outcomes, essentially quantifying the ‘error’ or ‘loss’ of the model.</p>
+<p>During training, this objective function guides the adjustment of the model’s parameters. The learning algorithm iteratively refines these parameters to minimize the loss. In the context of Federated Learning, each participating client endeavors to minimize the loss on their local dataset. These individual learnings are then collectively aggregated to enhance the global model.</p>
+<p>For a more comprehensive dive into the complexities of deep learning models, their parameterization, and the pivotal role of objective functions, readers are recommended to consult “Deep Learning” by Goodfellow, Bengio, and Courville <span class="citation" data-cites="Goodfellow-et-al-2016"><a href="#ref-Goodfellow-et-al-2016" role="doc-biblioref">[1]</a></span>. This resource offers an extensive examination of neural networks and deep learning fundamentals, providing an essential foundation for these critical aspects of modern machine learning.</p>
+</section>
+<section id="optimizing-the-global-model-the-central-objective-function-in-federated-learning" class="level3">
+<h3 class="anchored" data-anchor-id="optimizing-the-global-model-the-central-objective-function-in-federated-learning">Optimizing the Global Model: The Central Objective Function in Federated Learning</h3>
+<p>In traditional Federated Learning, the primary aim is to develop a global model that serves the collective learning interests of all participating clients. This is commonly achieved through an objective function designed to minimize the overall loss. The function described here is one of the most prevalent forms for constructing a shared global model. However, it’s important to note that Federated Learning is a versatile framework, capable of accommodating a variety of objective functions to cater to diverse learning goals. These can range from crafting personalized models tailored to individual client characteristics, to developing meta-models or multi-task models that address a broader spectrum of learning tasks.</p>
+<p>In the context of this section, let’s delve into the commonly used objective function for learning a common shared model in centralized synchronous Federated Learning: the overarching goal is to find a global model, represented by parameters <span class="math inline">\(\theta\)</span>, that minimizes the overall loss across all participating clients. This loss is defined by a loss function <span class="math inline">\(\ell\)</span>. Mathematically, the objective can be expressed as:</p>
+<p><span class="math display">\[
+\min_{\theta} \sum_{i \in D} \sum_{j \in [n_i]} \ell(\theta ; z_i^j).&nbsp;
+\]</span></p>
+<p>Here, <span class="math inline">\(D\)</span> denotes the set of all clients, and <span class="math inline">\(n_i\)</span> represents the number of data points for client <span class="math inline">\(i\)</span>. The term <span class="math inline">\(z_i^j\)</span> refers to the <span class="math inline">\(j^{th}\)</span> data point of the <span class="math inline">\(i^{th}\)</span> client. The global loss function seeks to minimize the aggregated loss across all clients’ data.</p>
+<p>For a more precise understanding, consider the empirical loss function for each client <span class="math inline">\(i \in D\)</span>:</p>
+<p><span class="math display">\[
+F_i(\theta) = \frac{1}{n_i} \sum_{j \in [n_i]} \ell(\theta ; z_i^j),&nbsp;
+\]</span></p>
+<p>where denotes the average loss over the data of client <span class="math inline">\(i\)</span>. The total number of data points across all clients is given by <span class="math inline">\(n = \sum_{i \in D} n_i\)</span>.</p>
+<p>This equation represents the heart of Federated Learning in a centralized synchronous setting: the minimization of the weighted average of local losses, where the weight is proportional to the number of data points per client.</p>
+</section>
+</section>
+<section id="the-iterative-process-of-federated-learning" class="level2">
+<h2 class="anchored" data-anchor-id="the-iterative-process-of-federated-learning">The Iterative Process of Federated Learning</h2>
+<p>In Federated Learning (FL), the core principle is to collaboratively minimize a global loss function, reflecting the collective learning objectives of all participants. This process involves an intricate interplay between local optimizations on client devices and global model improvements, ensuring that learning on disparate local data doesn’t compromise the overall model’s effectiveness.</p>
+<section id="the-steps-of-federated-learning" class="level3">
+<h3 class="anchored" data-anchor-id="the-steps-of-federated-learning">The Steps of Federated Learning</h3>
+<ol type="1">
+<li><strong>Client Selection</strong></li>
+</ol>
+<p>The server identifies a subset of clients for participation in the current training round. This step is critical for managing computational resources and ensuring diverse representation in the learning process.</p>
+<ol start="2" type="1">
+<li><strong>Global Model Distribution</strong></li>
+</ol>
+<p>The global model, parameterized by <span class="math inline">\(\theta\)</span>, is distributed to the selected clients. This model encapsulates the current state of learned parameters from the collective training efforts of all clients so far.</p>
+<ol start="3" type="1">
+<li><strong>Local Training</strong></li>
+</ol>
+<p>Each client performs training on its local dataset. This step involves updating the model parameters (<span class="math inline">\(\theta\)</span>) locally to minimize the loss function specific to that client’s data.</p>
+<ol start="4" type="1">
+<li><strong>Model Update Sharing</strong></li>
+</ol>
+<p>Post-training, clients share their updated model parameters (denoted as <span class="math inline">\(\theta_i\)</span>) with the server. These updates are essentially the refined weights learned from each client’s unique data.</p>
+<ol start="5" type="1">
+<li><strong>Aggregation</strong></li>
+</ol>
+<p>The server aggregates these individual updates to update the global model. This aggregation often takes the form of a weighted average, where each client’s contribution might be weighted by factors such as the size of their dataset.</p>
+<p>Through these steps, the FL process iteratively converges towards a model that effectively captures the collective intelligence of all participating clients.</p>
+</section>
+</section>
+<section id="federated-averaging-fedavg-explained" class="level2">
+<h2 class="anchored" data-anchor-id="federated-averaging-fedavg-explained">Federated Averaging (FedAvg) Explained</h2>
+<p>Federated Averaging, or FedAvg, proposed by McMahan et al., serves as a quintessential example of applying these FL steps in a centralized synchronous environment <span class="citation" data-cites="McMahan2017FedAvg"><a href="#ref-McMahan2017FedAvg" role="doc-biblioref">[2]</a></span>. The objective function can be formulated as:</p>
+<p><span class="math display">\[
+\min_{\theta} \frac{1}{n} \sum_{i \in D} n_i \cdot F_i(\theta).&nbsp;
+\]</span></p>
+<section id="local-training-on-edge-nodes" class="level3">
+<h3 class="anchored" data-anchor-id="local-training-on-edge-nodes">Local Training on Edge Nodes</h3>
+<ol type="1">
+<li>Each selected client receives the global model parameters <span class="math inline">\(\theta\)</span> from the server.</li>
+<li>Clients independently train the model on their local data, updating the parameters to <span class="math inline">\(\theta_i\)</span> based on their unique datasets.</li>
+<li>This local training often involves running several epochs of an algorithm like Stochastic Gradient Descent (SGD).</li>
+</ol>
+</section>
+<section id="aggregation-on-the-server-side" class="level3">
+<h3 class="anchored" data-anchor-id="aggregation-on-the-server-side">Aggregation on the Server Side</h3>
+<ol type="1">
+<li><p>After training, clients send their updated model parameters <span class="math inline">\(\theta_i\)</span> back to the central server.</p></li>
+<li><p>The server aggregates these updates using a weighted average, where the weight is typically the number of data points on each client, to compute the new global model parameters.</p>
+<p>The equation for this aggregation in FedAvg can be represented as:</p>
+<p><span class="math display">\[
+\theta^{new} = \frac{1}{n} \sum_{i \in D} n_i \cdot \theta_i.&nbsp;
+\]</span></p></li>
+<li><p>The updated global model <span class="math inline">\(\theta^{new}\)</span> is then sent back to the clients, and the process repeats until convergence.</p></li>
+</ol>
+<p>This cycle of local training and server-side aggregation forms the crux of the Federated Averaging algorithm, balancing local optimizations with global model improvements.</p>
+<p>While Federated Averaging is a staple in centralized synchronous FL, the field also encompasses diverse configurations suited for various data and collaboration scenarios. Let’s explore these configurations next.</p>
+</section>
+</section>
+</section>
+<section id="exploring-the-diverse-configurations-of-federated-learning" class="level1">
+<h1>Exploring the Diverse Configurations of Federated Learning</h1>
+<p>Federated Learning (FL) isn’t a one-size-fits-all approach; it offers a spectrum of configurations tailored to different data structures and collaboration needs. The beauty of FL lies in its flexibility to adapt to various data arrangements and collaboration requirements. While centralized synchronous FL is a widely discussed paradigm, the landscape of FL is much broader.</p>
+<section id="horizontal-federated-learning-hfl-expanding-the-dataset" class="level2">
+<h2 class="anchored" data-anchor-id="horizontal-federated-learning-hfl-expanding-the-dataset">Horizontal Federated Learning (HFL): Expanding the Dataset</h2>
+<p>In Horizontal Federated Learning, the focus is on enlarging the dataset through a collection of diverse samples while maintaining a consistent feature space. Mathematically, if we consider a set of clients <span class="math inline">\(C = {c_1, c_2, ..., c_n}\)</span>, each client <span class="math inline">\(c_i\)</span> possesses a dataset <span class="math inline">\(D_i = {(x_{i1}, y_{i1}), ..., (x_{im}, y_{im})}\)</span> where <span class="math inline">\(x_{ij}\)</span> are the features, and <span class="math inline">\(y_{ij}\)</span> are the labels. In HFL, all clients share the same feature set, i.e., <span class="math inline">\(x_{ij}\)</span> in <span class="math inline">\(D_i\)</span> and <span class="math inline">\(x_{kj}\)</span> in are of the same dimension and nature, but the samples (pairs of <span class="math inline">\(x_{ij}\)</span> and <span class="math inline">\(y_{ij}\)</span>) differ across clients.</p>
+<p><strong>Increase in Data Volume:</strong> By aggregating samples from multiple clients, HFL effectively increases the overall size of the training dataset. This can lead to improved model performance, especially in scenarios where data is abundant but fragmented across many users or devices. HFL leverages the diversity inherent in distributed data sources, potentially leading to more robust and generalizable models.</p>
+</section>
+<section id="vertical-federated-learning-vfl-enriching-data-features" class="level2">
+<h2 class="anchored" data-anchor-id="vertical-federated-learning-vfl-enriching-data-features">Vertical Federated Learning (VFL): Enriching Data Features</h2>
+<p>Vertical Federated Learning comes into play when different clients possess different sets of features for the same samples. Consider the same set of clients <span class="math inline">\(C\)</span>. In VFL, client <span class="math inline">\(c_i\)</span> holds a dataset <span class="math inline">\(D_i = {(x_{i1}, y_{i1}), ..., (x_{im}, y_{im})}\)</span>, but here, <span class="math inline">\(x_{ij}\)</span> and <span class="math inline">\(x_{kj}\)</span> in datasets <span class="math inline">\(D_i\)</span> and <span class="math inline">\(D_k\)</span> of different clients may have different dimensions or types of features for the same <span class="math inline">\(y_{ij}\)</span>.</p>
+<p><strong>Enhanced Feature Set:</strong> VFL allows models to access a more comprehensive set of features per sample, potentially leading to more accurate predictions. This is especially beneficial in scenarios where no single entity has a complete view of the data, but a collective effort can provide a more holistic understanding. With access to a richer set of features, models can capture more complex relationships in the data, which might not be possible with a limited feature set.</p>
+</section>
+<section id="navigating-the-configurations-of-decentralized-federated-learning" class="level2">
+<h2 class="anchored" data-anchor-id="navigating-the-configurations-of-decentralized-federated-learning">Navigating the Configurations of Decentralized Federated Learning</h2>
+<p>Federated Learning (FL) transcends the conventional centralized model, embracing more nuanced and flexible structures.</p>
+<section id="centralized-fl" class="level3">
+<h3 class="anchored" data-anchor-id="centralized-fl">Centralized FL</h3>
+<p>In the centralized configuration, often associated with cross-device scenarios, a central server acts as the hub for all communications. While this model simplifies coordination, it risks becoming a bottleneck, especially when scaling to millions of devices. The server’s capacity to handle numerous concurrent client updates can significantly impact the system’s overall efficiency.</p>
+</section>
+<section id="hierarchical-fl" class="level3">
+<h3 class="anchored" data-anchor-id="hierarchical-fl">Hierarchical FL</h3>
+<p>The hierarchical approach introduces an intermediary layer between the central server and clients, distributing the communication load. This configuration can effectively manage the challenges posed by large-scale, cross-device FL by reducing the direct communication demands on the central server.</p>
+</section>
+<section id="peer-to-peer-fl" class="level3">
+<h3 class="anchored" data-anchor-id="peer-to-peer-fl">Peer-to-Peer FL</h3>
+<p>Peer-to-peer (P2P) FL represents a paradigm shift where clients directly exchange updates without a central coordinator. In cross-silo settings, where collaboration occurs between entities like companies, P2P FL is particularly advantageous. It eliminates the need for an intermediary, fostering direct, collaborative model training among the participating entities. While P2P FL offers advantages in cross-silo collaborations, scaling it to support millions of devices (as in cross-device scenarios) presents significant challenges. Ensuring efficient, scalable communication in such a vast network is a complex task, requiring advanced strategies to manage data exchange without overwhelming the network.</p>
+<p>In response to these challenges, there’s a growing focus on developing workflows that optimize communication schemes in decentralized FL. These solutions aim to minimize bandwidth requirements and enhance the overall efficiency of the FL process, ensuring that the system remains scalable and effective, even as the number of participating clients grows.</p>
+</section>
+</section>
+<section id="synchronous-vs.-asynchronous-fl" class="level2">
+<h2 class="anchored" data-anchor-id="synchronous-vs.-asynchronous-fl">Synchronous vs.&nbsp;Asynchronous FL</h2>
+<p>Federated Learning (FL) is not just about how data is shared and processed, but also about when it happens. This timing aspect is crucially defined in the synchronous and asynchronous paradigms of FL. Each approach has its merits and challenges, especially when considering the balance between overall system efficiency and fairness among participants.</p>
+<section id="synchronous-fl-uniform-updates" class="level3">
+<h3 class="anchored" data-anchor-id="synchronous-fl-uniform-updates">Synchronous FL: Uniform Updates</h3>
+<p>In synchronous Federated Learning, all participating clients are required to update their models simultaneously. This synchronization ensures uniformity in the learning process, as every client contributes to each training round. However, this method can lead to inefficiencies, particularly in scenarios involving a wide range of devices with varying computational capabilities.</p>
+<p>The primary drawback of synchronous FL is its susceptibility to delays caused by slower clients, often referred to as stragglers. The entire system’s progress is pegged to the pace of the slowest participant, which can significantly prolong the training process.</p>
+</section>
+<section id="asynchronous-fl-flexible-and-fast" class="level3">
+<h3 class="anchored" data-anchor-id="asynchronous-fl-flexible-and-fast">Asynchronous FL: Flexible and Fast</h3>
+<p>Asynchronous FL, on the other hand, allows clients to update their models at different times. This flexibility can greatly enhance the system’s efficiency by not having to wait for the slower clients.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li><strong>Efficiency in Convergence:</strong> Asynchronous updates can expedite the overall training process, as faster clients don’t have to wait for the slower ones.</li>
+<li><strong>Better Utilization of Resources:</strong> This approach can lead to more effective use of each client’s computational resources, as they can contribute updates as soon as they are ready.</li>
+</ul>
+<p>While asynchronous FL offers advantages in terms of efficiency, it requires careful handling to avoid degradation in the learning performance. If not managed properly, the model may converge slower or to a less optimal state due to the lack of coordinated updates.</p>
+</section>
+</section>
+</section>
+<section id="navigating-the-future-of-federated-learning-challenges-and-opportunities" class="level1">
+<h1>Navigating the Future of Federated Learning: Challenges and Opportunities</h1>
+<p>As we have explored throughout this article, Federated Learning (FL) represents a significant shift in the landscape of machine learning and data science. By enabling collaborative model training across decentralized data sources while maintaining data privacy, FL addresses some of the most pressing concerns in the digital world. However, this innovative approach also brings its own set of challenges, each opening doors to further exploration and innovation in the realm of decentralized data science.</p>
+<section id="data-privacy-and-security" class="level2">
+<h2 class="anchored" data-anchor-id="data-privacy-and-security">Data Privacy and Security</h2>
+<p>FL inherently enhances data privacy by keeping data localized, but this is just the beginning. To fortify data security further, techniques like Differential Privacy, Secure Multi-Party Computation, and Homomorphic Encryption are crucial. These methods ensure that even the derived insights from the data do not compromise individual privacy.</p>
+<p>For a deeper dive into these advanced privacy-preserving techniques, read our article on <a href="">Securing Decentralized Data Science</a>.</p>
+</section>
+<section id="communication-efficiency" class="level2">
+<h2 class="anchored" data-anchor-id="communication-efficiency">Communication Efficiency</h2>
+<p>The efficiency of FL is heavily reliant on the communication protocols used. Reducing the volume of data exchanged and compressing the data effectively are essential strategies. These approaches help in managing the bandwidth constraints and making the FL process more viable and efficient.</p>
+<p>Discover more about optimizing communication in FL in our article on communication efficiency strategies.</p>
+</section>
+<section id="heterogeneity" class="level2">
+<h2 class="anchored" data-anchor-id="heterogeneity">Heterogeneity</h2>
+<p>Addressing the variability in data distribution, computational power, and network connectivity among clients is a significant challenge in FL. This heterogeneity raises questions about model personalization versus the development of a single, unified model.</p>
+<p>Explore this further in our articles on “<a href="">Vertical Data Partitioning: Challenges and Opportunities</a>” and “<a href="../../articles/FL_noniid/index.html">Navigating the Complexity of Heterogeneous Data in Decentralized Networks</a>”.</p>
+</section>
+<section id="model-convergence" class="level2">
+<h2 class="anchored" data-anchor-id="model-convergence">Model Convergence</h2>
+<p>The diversity and decentralized nature of FL pose unique challenges to model convergence. Advanced aggregation techniques and robust training algorithms play a pivotal role in addressing this issue, ensuring the global model effectively learns from the distributed data.</p>
+</section>
+<section id="scalability" class="level2">
+<h2 class="anchored" data-anchor-id="scalability">Scalability</h2>
+<p>With potentially millions of clients, scalability remains a critical area in FL. Efficient algorithms for client selection, scalable aggregation methods, and robust system architectures are crucial in ensuring the FL system can effectively handle large-scale operations.</p>
+</section>
+</section>
+<section id="in-conclusion" class="level1">
+<h1>In Conclusion</h1>
+<p>Federated Learning, while still evolving, stands at the forefront of a new era in machine learning. It offers an ethical, privacy-preserving, and collaborative approach to data analysis and model training. As we continue to face and address the challenges inherent in this field, FL is poised to unlock unprecedented potentials in leveraging collective data for the greater good.</p>
+<p>This article serves as a gateway to understanding FL’s possibilities and challenges. We encourage readers to explore the linked articles for a more in-depth understanding of each challenge and to stay informed about the latest advancements in decentralized data science.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-Goodfellow-et-al-2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">I. Goodfellow, Y. Bengio, and A. Courville, <em>Deep learning</em>. MIT Press, 2016.</div>
+</div>
+<div id="ref-McMahan2017FedAvg" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas, <span>“Communication-efficient learning of deep networks from decentralized data,”</span> <em>Proceedings of the 20th International Conference on Artificial Intelligence and Statistics</em>, vol. 54, pp. 1273–1282, 2017.</div>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright © Manta, Inc.&nbsp;2024. All Rights Reserved</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

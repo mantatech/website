@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2024-02-12">
+
+<title>manta - Navigating Heterogeneity: The Challenge of Non-IID Data in Federated Learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script type="application/json" class="js-hypothesis-config">
+{
+  "theme": "clean"
+}
+</script>
+<script async="" src="https://hypothes.is/embed.js"></script>
+<script>
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    document.body.classList.add('hypothesis-enabled');
+  });
+</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">manta</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../articles.html"> 
+<span class="menu-text">Articles</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="mailto:manta@mantatech.io" rel="contact-us"> 
+<span class="menu-text">Contact us</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#unraveling-data-diversity-understanding-non-iid-in-decentralized-contexts" id="toc-unraveling-data-diversity-understanding-non-iid-in-decentralized-contexts" class="nav-link active" data-scroll-target="#unraveling-data-diversity-understanding-non-iid-in-decentralized-contexts">Unraveling Data Diversity: Understanding Non-IID in Decentralized Contexts</a>
+  <ul class="collapse">
+  <li><a href="#defining-non-iid-data" id="toc-defining-non-iid-data" class="nav-link" data-scroll-target="#defining-non-iid-data">Defining Non-IID Data</a></li>
+  <li><a href="#navigating-the-diverse-data-landscape-in-fl" id="toc-navigating-the-diverse-data-landscape-in-fl" class="nav-link" data-scroll-target="#navigating-the-diverse-data-landscape-in-fl">Navigating the Diverse Data Landscape in FL</a>
+  <ul class="collapse">
+  <li><a href="#shared-global-distribution" id="toc-shared-global-distribution" class="nav-link" data-scroll-target="#shared-global-distribution">Shared Global Distribution</a></li>
+  <li><a href="#the-challenge-of-varied-learning-tasks" id="toc-the-challenge-of-varied-learning-tasks" class="nav-link" data-scroll-target="#the-challenge-of-varied-learning-tasks">The Challenge of Varied Learning Tasks</a></li>
+  <li><a href="#balancing-local-and-global-learning" id="toc-balancing-local-and-global-learning" class="nav-link" data-scroll-target="#balancing-local-and-global-learning">Balancing Local and Global Learning</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#crafting-solutions-strategies-to-tackle-data-heterogeneity" id="toc-crafting-solutions-strategies-to-tackle-data-heterogeneity" class="nav-link" data-scroll-target="#crafting-solutions-strategies-to-tackle-data-heterogeneity">Crafting Solutions: Strategies to Tackle Data Heterogeneity</a>
+  <ul class="collapse">
+  <li><a href="#single-model-approaches-for-enhanced-generalization" id="toc-single-model-approaches-for-enhanced-generalization" class="nav-link" data-scroll-target="#single-model-approaches-for-enhanced-generalization">Single-Model Approaches for Enhanced Generalization</a>
+  <ul class="collapse">
+  <li><a href="#gradient-descent-optimization-in-federated-learning" id="toc-gradient-descent-optimization-in-federated-learning" class="nav-link" data-scroll-target="#gradient-descent-optimization-in-federated-learning">Gradient Descent Optimization in Federated Learning</a></li>
+  <li><a href="#regularization-techniques-strategies-to-prevent-overfitting-to-specific-node-data" id="toc-regularization-techniques-strategies-to-prevent-overfitting-to-specific-node-data" class="nav-link" data-scroll-target="#regularization-techniques-strategies-to-prevent-overfitting-to-specific-node-data">Regularization Techniques: Strategies to prevent overfitting to specific node data</a></li>
+  <li><a href="#augmentation-methods-enhancing-model-robustness-through-synthetic-data-generation" id="toc-augmentation-methods-enhancing-model-robustness-through-synthetic-data-generation" class="nav-link" data-scroll-target="#augmentation-methods-enhancing-model-robustness-through-synthetic-data-generation">Augmentation Methods: Enhancing model robustness through synthetic data generation</a></li>
+  <li><a href="#transfer-learning-leveraging-pre-trained-models-to-enhance-generalization" id="toc-transfer-learning-leveraging-pre-trained-models-to-enhance-generalization" class="nav-link" data-scroll-target="#transfer-learning-leveraging-pre-trained-models-to-enhance-generalization">Transfer Learning: Leveraging pre-trained models to enhance generalization</a></li>
+  <li><a href="#innovative-aggregation-tackling-heterogeneity-in-fl" id="toc-innovative-aggregation-tackling-heterogeneity-in-fl" class="nav-link" data-scroll-target="#innovative-aggregation-tackling-heterogeneity-in-fl">Innovative Aggregation: Tackling Heterogeneity in FL</a></li>
+  <li><a href="#strategic-node-selection-for-enhanced-fl" id="toc-strategic-node-selection-for-enhanced-fl" class="nav-link" data-scroll-target="#strategic-node-selection-for-enhanced-fl">Strategic Node Selection for Enhanced FL</a></li>
+  </ul></li>
+  <li><a href="#multi-model-approaches-a-segmental-perspective" id="toc-multi-model-approaches-a-segmental-perspective" class="nav-link" data-scroll-target="#multi-model-approaches-a-segmental-perspective">Multi-Model Approaches: A Segmental Perspective</a>
+  <ul class="collapse">
+  <li><a href="#multi-task-learning-specialized-yet-unified" id="toc-multi-task-learning-specialized-yet-unified" class="nav-link" data-scroll-target="#multi-task-learning-specialized-yet-unified">Multi-task Learning: Specialized Yet Unified</a></li>
+  <li><a href="#the-promise-of-meta-learning-adapting-to-data-diversity" id="toc-the-promise-of-meta-learning-adapting-to-data-diversity" class="nav-link" data-scroll-target="#the-promise-of-meta-learning-adapting-to-data-diversity">The Promise of Meta-Learning: Adapting to Data Diversity</a></li>
+  <li><a href="#clustering-grouping-for-greater-good" id="toc-clustering-grouping-for-greater-good" class="nav-link" data-scroll-target="#clustering-grouping-for-greater-good">Clustering: Grouping for Greater Good</a></li>
+  <li><a href="#other-innovative-approaches" id="toc-other-innovative-approaches" class="nav-link" data-scroll-target="#other-innovative-approaches">Other Innovative Approaches</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Navigating Heterogeneity: The Challenge of Non-IID Data in Federated Learning</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">machine learning</div>
+    <div class="quarto-category">decentralization</div>
+    <div class="quarto-category">heterogeneity</div>
+  </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 12, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the ever-evolving landscape of data science, the paradigm of Federated Learning (FL) has emerged as a beacon of innovation, allowing for the decentralization of data processing while maintaining privacy and efficiency. For a deeper dive into the foundational concepts of Federated Learning, our previous exploration, <a href="../../articles/FL/index.html">“Demystifying Federated Learning”</a>, serves as an essential primer.</p>
+<p>The essence of FL lies in its ability to learn across a multitude of devices or organizational boundaries (nodes), each contributing to a collective intelligence without sharing the raw data. This decentralized approach inherently leads to a scenario where data is not just diverse but heterogeneous in nature. This heterogeneity manifests vividly in cross-device scenarios like Internet of Things (IoT) deployments and smartphones, where each device captures data in its unique context. Similarly, in cross-silo scenarios—think different organizations or departments within a company—the data is often vertically partitioned, presenting a distinct set of challenges and opportunities (see <a href=""><strong>Navigating the Complexities of Data Partitioning in Decentralized Systems</strong></a> for more details on vertical partitioning).</p>
+<p>Navigating through this maze of heterogeneous data is no small feat. The data generated across these varied nodes is often non-Independent and Identically Distributed (non-IID), meaning that it does not conform to a single, unified statistical profile. This non-IID nature of data in decentralized networks introduces complex challenges in ensuring that the Federated Learning models are both effective and fair across all nodes.</p>
+<p>Addressing the nuances of non-IID data is more than a technical hurdle; it’s a critical step towards the advancement of decentralized data science. It demands not only a deep understanding of the data and its context but also a thoughtful approach to developing learning algorithms that can adapt and thrive in such a diverse environment. In this journey through the realm of heterogeneous data, we uncover the challenges and explore solutions, paving the way for a more robust and inclusive Federated Learning landscape.</p>
+<section id="unraveling-data-diversity-understanding-non-iid-in-decentralized-contexts" class="level1">
+<h1>Unraveling Data Diversity: Understanding Non-IID in Decentralized Contexts</h1>
+<section id="defining-non-iid-data" class="level2">
+<h2 class="anchored" data-anchor-id="defining-non-iid-data">Defining Non-IID Data</h2>
+<p>Federated Learning (FL) represents a paradigm shift in data science, leveraging data that is inherently local and context-specific. Consider how a user interacts with their mobile device: each tap, swipe, or type is not just an action but a story of personal habits and environmental influences. This rich tapestry of data brings us to the concept of non-IID (non-Independent and Identically Distributed) data. In contrast to traditional datasets, where each data point is assumed to be a clone of its peers in terms of distribution and independence, non-IID data challenges this notion with its diversity and interconnectedness.</p>
+<p>To delve deeper, let’s unpack the mathematical notation. When we talk about a set of random variables, we might denote it as <span class="math inline">\({X}_{i=1}^{d}\)</span>. Here, <span class="math inline">\(X\)</span> represents the variables, and <span class="math inline">\(i=1\)</span> to <span class="math inline">\(d\)</span> indicates that we are considering a sequence of these variables, from the first one (<span class="math inline">\(i=1\)</span>) to the <span class="math inline">\(d^{th}\)</span> onand mathee. In a scenario where these variables are IID, the joint probability of observing all these variables together is equivalent to the product of the probabilities of observing each one independently. This mathematical representation is a cornerstone in traditional statistical modeling and machine learning.</p>
+<p>The IID assumption holds significant importance in the realm of machine learning, particularly with respect to the convergence of models during training. This assumption streamlines the theoretical analysis of these models. It makes the behavior and performance of models more predictable and quantifiable, aiding in the establishment of error bounds, convergence rates, and model uncertainty. Essentially, the IID assumption implies that each data point in a dataset is drawn from the same distribution and is independent of other data points. This uniformity simplifies many aspects of statistical modeling and machine learning, including the training process and evaluation of model performance.</p>
+<p>In practice, the IID assumption contributes to training models that perform well and generalize effectively across different data sets. When data points are IID, it ensures that learning from one part of the data is applicable to the rest, leading to models that are not just accurate on the training data but also on unseen data. This is crucial for building reliable and robust machine learning models that can be deployed in real-world scenarios where the data may vary from the training set.</p>
+<p>However, the unique environment of Federated Learning (FL) often deviates from the IID assumption. In FL, data is sourced from a variety of devices and user contexts, leading to substantial variation in its characteristics. This non-IID nature of data in FL poses significant challenges in training models, as it complicates their ability to generalize effectively across the entire network. Models trained in non-IID settings might struggle with accuracy and reliability when applied to the broader network, underscoring the need for specialized strategies to handle non-IID data efficiently.</p>
+</section>
+<section id="navigating-the-diverse-data-landscape-in-fl" class="level2">
+<h2 class="anchored" data-anchor-id="navigating-the-diverse-data-landscape-in-fl">Navigating the Diverse Data Landscape in FL</h2>
+<p>As we delve into the various non-IID scenarios encountered in FL, it becomes clear that handling data heterogeneity is not just a challenge but a necessity for ensuring robust and reliable models. This need is well-illustrated in the study by <span class="citation" data-cites="Kairouz2019"><a href="#ref-Kairouz2019" role="doc-biblioref">[1]</a></span>, which provides a comprehensive exploration of the different facets of non-IID data in federated settings.</p>
+<section id="shared-global-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="shared-global-distribution">Shared Global Distribution</h3>
+<p>In some Federated Learning (FL) scenarios, the data across all nodes, such as smartphones, IoT devices in a smart city, or different departments within an organization, may be sourced from a single global distribution. Let’s denote this global distribution as <span class="math inline">\(P_g\)</span>. Despite originating from <span class="math inline">\(P_g\)</span>, the way data is partitioned among nodes introduces significant heterogeneity. This can manifest in several forms:</p>
+<ul>
+<li><strong>Feature Distribution Bias</strong>: Formally, if <span class="math inline">\(X_i\)</span> represents the features of data on node <span class="math inline">\(i\)</span> and <span class="math inline">\(P(X)\)</span> the distribution of these features, feature distribution bias occurs when <span class="math inline">\(P(X_i) \neq P_g(X)\)</span>. For instance, consider a handwriting recognition app used globally. The way people write the same word can vary significantly across cultures, reflecting a variation in <span class="math inline">\(P(X_i)\)</span>, the marginal distribution of input features.</li>
+<li><strong>Label Distribution Bias</strong>: If we represent the labels of data on node <span class="math inline">\(i\)</span> as <span class="math inline">\(Y_i\)</span> and their distribution as <span class="math inline">\(P(Y)\)</span>, label distribution bias happens when <span class="math inline">\(P(Y_i) \neq P_g(Y)\)</span>. Take, for example, a healthcare app used across different regions. Some regions might only report certain types of diseases, leading to variations in <span class="math inline">\(P(Y_i)\)</span>.</li>
+<li><strong>Quantity Bias</strong>: Let <span class="math inline">\(N_i\)</span> denote the number of data samples at node <span class="math inline">\(i\)</span>. Quantity bias occurs when there’s a significant difference in <span class="math inline">\(N_i\)</span> across nodes. In an industrial IoT setup, for instance, some sensors (nodes) might generate more data (<span class="math inline">\(N_i\)</span> is higher) than others due to differences in operational intensity or environmental factors.</li>
+</ul>
+<p>This heterogeneity poses a challenge to the one-size-fits-all approach of a single global model, as training on local data can skew the model away from learning patterns that are universally applicable.</p>
+</section>
+<section id="the-challenge-of-varied-learning-tasks" class="level3">
+<h3 class="anchored" data-anchor-id="the-challenge-of-varied-learning-tasks">The Challenge of Varied Learning Tasks</h3>
+<p>In more complex FL scenarios, each node might not only encounter data from different distributions but also engage in distinct learning tasks. This is particularly evident in diverse IoT applications:</p>
+<ul>
+<li><strong>Shared Tasks</strong>: Let’s consider a scenario with a set of tasks <span class="math inline">\(T\)</span>, where each node <span class="math inline">\(i\)</span> is working on a task <span class="math inline">\(t_i \in T\)</span>. In a shared task scenario, all nodes work on the same task (<span class="math inline">\(t_i = t_j\)</span> for any nodes <span class="math inline">\(i, j\)</span>), but the data distribution might vary. For example, in a smart city, different sensors are employed for the same task, like weather prediction (<span class="math inline">\(t_i = t_j = \text{"weather prediction"}\)</span>), but the data they gather (<span class="math inline">\(X_i\)</span> and <span class="math inline">\(X_j\)</span>) varies significantly due to differing local weather conditions.</li>
+<li><strong>Unshared Tasks</strong>: In this case, <span class="math inline">\(t_i \neq t_j\)</span> for different nodes <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span>, meaning each node is addressing a unique task. In a manufacturing setup, different sensors might be monitoring completely different parameters—temperature, humidity, pressure—each representing a distinct task requiring a unique learning model.</li>
+</ul>
+<p>These scenarios highlight the limitations of applying a single global model in FL settings, underscoring the need for models that are adaptable to both the data heterogeneity and the specificity of tasks at each node.</p>
+</section>
+<section id="balancing-local-and-global-learning" class="level3">
+<h3 class="anchored" data-anchor-id="balancing-local-and-global-learning">Balancing Local and Global Learning</h3>
+<p>A critical issue in Federated Learning (FL) with non-IID data is the divergence of model weights, as highlighted in the findings of <span class="citation" data-cites="Zhao2018"><a href="#ref-Zhao2018" role="doc-biblioref">[2]</a></span>. In FL, each node updates the model based on its local data. When this data varies significantly across nodes (non-IID), the updates (or gradients) can also differ greatly. This phenomenon, known as weight divergence, arises when the local updates, which should collectively steer the model in a uniform direction, instead pull it in different, often conflicting, directions. This divergence can lead to a scenario where the aggregated updates (the combined learning from all nodes) do not accurately represent the learning needs of the entire network, compromising the overall accuracy and effectiveness of the federated model.</p>
+<p>Addressing the challenges of non-IID data in FL involves a delicate balance. On one hand, there’s a need for models that can generalize well across diverse datasets, ensuring robustness and accuracy. On the other hand, the uniqueness of local data shouldn’t be overshadowed. Innovative methods like regularization to limit model divergence, adaptive aggregation algorithms, and selective client participation are some ways to strike this balance.</p>
+<p>In essence, understanding and navigating the non-IID nature of data in decentralized networks like FL is pivotal. It’s not just about crafting models but about sculpting them to fit the multifaceted realities of the data they learn from—be it in smart cities, industrial IoT, or beyond. This journey through the world of non-IID data opens doors to more personalized, efficient, and context-aware machine learning models, steering the future of decentralized data science.</p>
+</section>
+</section>
+</section>
+<section id="crafting-solutions-strategies-to-tackle-data-heterogeneity" class="level1">
+<h1>Crafting Solutions: Strategies to Tackle Data Heterogeneity</h1>
+<p>In the dynamic world of Federated Learning (FL), where data is as diverse as the nodes that generate it, crafting effective solutions to manage this heterogeneity is key. Just like a tailor making adjustments to ensure a perfect fit, single-model approaches in FL involve fine-tuning and adapting the model to perform optimally across a wide array of heterogeneous datasets.</p>
+<section id="single-model-approaches-for-enhanced-generalization" class="level2">
+<h2 class="anchored" data-anchor-id="single-model-approaches-for-enhanced-generalization">Single-Model Approaches for Enhanced Generalization</h2>
+<p>The challenge in a single-model approach within a Federated Learning environment is ensuring that one model performs efficiently and accurately across all nodes, each with its unique data characteristics. This section explores various strategies that address this challenge.</p>
+<section id="gradient-descent-optimization-in-federated-learning" class="level3">
+<h3 class="anchored" data-anchor-id="gradient-descent-optimization-in-federated-learning">Gradient Descent Optimization in Federated Learning</h3>
+<p>The concept of Federated Learning was introduced to facilitate training deep neural networks with data distributed across multiple nodes. A core component of this training is minimizing loss using variants of Stochastic Gradient Descent (SGD). In FL, these algorithms must be adapted to handle non-IID data across distributed nodes while minimizing communication.</p>
+<p>Federated Averaging, proposed in seminal work, is a distributed version of SGD operating at both node and server levels. Subsequent adaptations focus on server-side enhancements. For instance, transmitting the differences in model parameters rather than the parameters themselves between rounds for averaging. This approach helps integrate adaptive algorithms like AdaGrad, Adam, and YOGI, offering potential benefits in communication efficiency and model adaptation to non-IID data.</p>
+<p>These methods signify ongoing efforts to optimize gradient descent algorithms for FL, aiming to match centralized performance while managing data heterogeneity and operational costs.</p>
+</section>
+<section id="regularization-techniques-strategies-to-prevent-overfitting-to-specific-node-data" class="level3">
+<h3 class="anchored" data-anchor-id="regularization-techniques-strategies-to-prevent-overfitting-to-specific-node-data">Regularization Techniques: Strategies to prevent overfitting to specific node data</h3>
+<p>Regularization in machine learning, often used to prevent overfitting, gains additional relevance in FL for convergence stability and model improvement.</p>
+<p>Regularization techniques are the balancing weights in a model’s training process, preventing it from leaning too heavily towards the peculiarities of a specific node’s data. They act as a form of guidance, keeping the model on track and ensuring it doesn’t overfit to the nuances of individual datasets. These techniques are crucial in maintaining the model’s ability to generalize well across all nodes, making it robust and versatile.</p>
+<p>An example is FedProx, which incorporates a proximal term in the local subproblem, encouraging updates that align closely with the global model. This approach addresses the interplay between system and statistical heterogeneity, improving convergence across diverse nodes.</p>
+</section>
+<section id="augmentation-methods-enhancing-model-robustness-through-synthetic-data-generation" class="level3">
+<h3 class="anchored" data-anchor-id="augmentation-methods-enhancing-model-robustness-through-synthetic-data-generation">Augmentation Methods: Enhancing model robustness through synthetic data generation</h3>
+<p>In FL, one approach to mitigate non-IID data challenges is data augmentation. By using synthetic data, these methods expand the diversity of the training set, allowing the model to experience and learn from a broader spectrum of data scenarios. This not only enhances the model’s robustness but also its ability to perform well in unseen or rare data conditions.</p>
+<p>Techniques like sharing a small IID data subset or employing GANs (Generative Adversarial Networks) to augment local datasets can enhance the statistical homogeneity of the data. However, these methods must be carefully implemented to align with FL’s privacy-preserving principles.</p>
+</section>
+<section id="transfer-learning-leveraging-pre-trained-models-to-enhance-generalization" class="level3">
+<h3 class="anchored" data-anchor-id="transfer-learning-leveraging-pre-trained-models-to-enhance-generalization">Transfer Learning: Leveraging pre-trained models to enhance generalization</h3>
+<p>Transfer learning involves taking a model trained on one task and fine-tuning it to perform another, related task. This approach is particularly beneficial in FL, where a pre-trained model can be adapted to perform well across different nodes, leveraging its existing knowledge and saving significant time and resources in training.</p>
+<p>These single-model strategies represent a toolkit for managing data heterogeneity in federated learning environments. By implementing these techniques, we aim to develop models that are not just accurate but also equitable and efficient across diverse data landscapes.</p>
+</section>
+<section id="innovative-aggregation-tackling-heterogeneity-in-fl" class="level3">
+<h3 class="anchored" data-anchor-id="innovative-aggregation-tackling-heterogeneity-in-fl">Innovative Aggregation: Tackling Heterogeneity in FL</h3>
+<p>Modifying the aggregation algorithm in FL can also address data heterogeneity. Techniques like SCAFFOLD use variance reduction, maintaining a state for each node and the server to correct client drift. Alternative approaches involve altering the communication scheme, as seen in LD-SGD, which combines local updates with multiple communication rounds for efficiency in non-IID settings.</p>
+</section>
+<section id="strategic-node-selection-for-enhanced-fl" class="level3">
+<h3 class="anchored" data-anchor-id="strategic-node-selection-for-enhanced-fl">Strategic Node Selection for Enhanced FL</h3>
+<p>Optimizing the selection of participating nodes in each training round can improve model convergence. Methods such as using a deep Q-Learning agent to select participating nodes, demonstrate the potential to enhance accuracy and reduce communication rounds through strategic client selection.</p>
+<p>These single-model strategies in FL represent a comprehensive approach to addressing the challenges posed by data heterogeneity. By implementing these techniques, the goal is to develop models that maintain high accuracy, fairness, and efficiency across diverse and decentralized data environments.</p>
+</section>
+</section>
+<section id="multi-model-approaches-a-segmental-perspective" class="level2">
+<h2 class="anchored" data-anchor-id="multi-model-approaches-a-segmental-perspective">Multi-Model Approaches: A Segmental Perspective</h2>
+<p>In a world where data and tasks vary wildly across different nodes in a federated learning system, relying on a single model to capture this diversity can be challenging. Multi-model approaches offer a solution to this challenge, providing a more tailored strategy for navigating the complex landscape of decentralized data. For an in-depth overview of personalization methods in this context, <span class="citation" data-cites="Tan2021"><a href="#ref-Tan2021" role="doc-biblioref">[3]</a></span>, present a comprehensive discussion on personalized federated learning, highlighting the evolution and potential of these approaches.</p>
+<section id="multi-task-learning-specialized-yet-unified" class="level3">
+<h3 class="anchored" data-anchor-id="multi-task-learning-specialized-yet-unified">Multi-task Learning: Specialized Yet Unified</h3>
+<p>Multi-task Learning (MTL) in federated learning is akin to a team of specialists working on related but distinct projects, each contributing to a broader objective. Each client in a federated network is seen as tackling a specific task that is part of a more complex global task. The beauty of MTL is in its ability to improve generalization by exploiting domain-specific knowledge across different tasks.</p>
+<p>Imagine a telecommunications network using an MTL model to optimize traffic. Each task might focus on a specific type of data, like optimizing video traffic, while the overarching goal is the general optimization of network traffic. The challenge, however, lies in configuring these tasks and the significant computational resources they demand, especially in scenarios like industry 4.0, where data and tasks are abundant and complex.</p>
+</section>
+<section id="the-promise-of-meta-learning-adapting-to-data-diversity" class="level3">
+<h3 class="anchored" data-anchor-id="the-promise-of-meta-learning-adapting-to-data-diversity">The Promise of Meta-Learning: Adapting to Data Diversity</h3>
+<p>Meta-learning, or “learning to learn”, is an approach that thrives on variety. It’s based on the idea that there’s a plethora of tasks (different data distributions, for instance) and that each client in the federated network is working on one of these tasks. The goal here is to create a meta-model that, once fine-tuned to a specific task, shows impressive performance.</p>
+<p>In the context of cybersecurity in a telecommunications network, a meta-learning model could be trained to detect various security threats and then adjusted for each specific type of threat. While powerful, this approach demands careful training and fine-tuning for each task, which can be resource-intensive.</p>
+</section>
+<section id="clustering-grouping-for-greater-good" class="level3">
+<h3 class="anchored" data-anchor-id="clustering-grouping-for-greater-good">Clustering: Grouping for Greater Good</h3>
+<p>Clustering in federated learning is like finding tribes in a vast population, where each tribe has its unique characteristics and needs. This method groups clients with similar data, enabling them to learn from each other more effectively while reducing the interference from dissimilar data.</p>
+<p>In a smart city scenario, clustering could be used to group users based on their data consumption habits, allowing for personalized network traffic optimization. For example, users who stream a lot of videos might be grouped together for bandwidth optimization during peak hours, while another group of users, who mainly use the network for browsing or emails, might require different optimization strategies.</p>
+</section>
+<section id="other-innovative-approaches" class="level3">
+<h3 class="anchored" data-anchor-id="other-innovative-approaches">Other Innovative Approaches</h3>
+<p>When it comes to personalizing learning in federated networks, the possibilities are as diverse as the data itself. One approach is to train individual models for each client, a method particularly useful when data per client is limited but risks overfitting. Another is parameter decoupling, where parts of the model are kept private and local, while others are shared globally. This method offers a balance between personalized learning and the efficiency of a shared global model.</p>
+<p>In telecommunications, for instance, such techniques can adapt to varying data distributions based on geographic location or service type, ensuring that each client gets a model that best suits their unique data landscape.</p>
+<p>These multi-model approaches represent the forefront of innovation in handling the diverse and complex world of decentralized data. From multi-task learning and meta-learning to clustering and beyond, each offers a unique lens to view and tackle the challenges of non-IID data in federated learning environments.</p>
+
+
+
+</section>
+</section>
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-Kairouz2019" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">P. Kairouz <em>et al.</em>, <span>“Advances and open problems in federated learning,”</span> <em>arXiv</em>, pp. 1–105, 2019, Available: <a href="https://arxiv.org/abs/1912.04977">https://arxiv.org/abs/1912.04977</a></div>
+</div>
+<div id="ref-Zhao2018" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Y. Zhao, M. Li, L. Lai, N. Suda, D. Civin, and V. Chandra, <span>“Federated learning with non-iid data,”</span> <em>arXiv</em>, 2018, Available: <a href="https://arxiv.org/abs/1806.00582">https://arxiv.org/abs/1806.00582</a></div>
+</div>
+<div id="ref-Tan2021" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">A. Z. Tan, H. Yu, L. Cui, and Q. Yang, <span>“Towards personalized federated learning,”</span> <em>arXiv</em>, 2021, Available: <a href="http://arxiv.org/abs/2103.00710">http://arxiv.org/abs/2103.00710</a></div>
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Copyright © Manta, Inc.&nbsp;2024. All Rights Reserved</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>This page is built with ❤️ and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
