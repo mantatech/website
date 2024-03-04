@@ -10,11 +10,13 @@ li {
   text-align: justify;
 }
 
-section > p {
+section>p {
   text-align: justify;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   margin: 3rem 0;
 }
 
@@ -124,7 +126,7 @@ h1, h2, h3 {
   position: relative;
 }
 
-.overview > p {
+.overview>p {
   margin-top: 0px;
   margin-bottom: 0px;
 }

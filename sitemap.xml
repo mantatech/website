@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://mantatech.github.io/website/articles.html</loc>
+    <lastmod>2024-02-27T17:41:12.349Z</lastmod>
+  </url>
+  <url>
     <loc>https://mantatech.github.io/website/index.html</loc>
-    <lastmod>2024-03-04T09:55:38.851Z</lastmod>
+    <lastmod>2024-03-04T10:42:02.103Z</lastmod>
   </url>
   <url>
     <loc>https://mantatech.github.io/website/articles/FL/index.html</loc>
-    <lastmod>2024-02-29T17:11:29.350Z</lastmod>
+    <lastmod>2024-03-04T10:42:53.551Z</lastmod>
   </url>
   <url>
     <loc>https://mantatech.github.io/website/articles/decentralization/index.html</loc>
-    <lastmod>2024-02-29T17:11:29.350Z</lastmod>
-  </url>
-  <url>
-    <loc>https://mantatech.github.io/website/about.html</loc>
-    <lastmod>2024-02-29T17:11:29.350Z</lastmod>
+    <lastmod>2024-02-28T18:32:51.592Z</lastmod>
   </url>
   <url>
     <loc>https://mantatech.github.io/website/articles/FL_noniid/index.html</loc>
-    <lastmod>2024-02-29T17:11:29.350Z</lastmod>
+    <lastmod>2024-02-28T18:30:30.103Z</lastmod>
   </url>
   <url>
-    <loc>https://mantatech.github.io/website/articles.html</loc>
-    <lastmod>2024-02-27T14:50:54.503Z</lastmod>
+    <loc>https://mantatech.github.io/website/about.html</loc>
+    <lastmod>2024-03-04T10:41:42.867Z</lastmod>
   </url>
 </urlset>

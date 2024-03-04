@@ -263,7 +263,7 @@ window.Quarto = {
 <p>Federated Learning (FL) has emerged as a transformative approach in the realm of machine learning, enabling collaborative yet privacy-preserving data analysis across multiple entities. This article aims to unravel the intricate layers of Federated Learning, offering a comprehensive understanding for data scientists and enthusiasts alike.</p>
 <section id="what-is-federated-learning" class="level1">
 <h1>What is Federated Learning?</h1>
-<p>Federated Learning (FL) emerged as a groundbreaking concept in 2017 when Brendan McMahan and his colleagues introduced the Federated Averaging algorithm [McMahan2017FedAvg]. At its core, FL is a powerful method for training machine learning models across multiple decentralized data sources, such as mobile devices or organizations, without the need to share or transfer the underlying data. This approach has gained significant traction recently, particularly due to its synergistic relationship with emerging technologies in edge computing and distributed learning.</p>
+<p>Federated Learning (FL) emerged as a groundbreaking concept in 2017 when Brendan McMahan and his colleagues introduced the Federated Averaging algorithm <span class="citation" data-cites="McMahan2017FedAvg"><a href="#ref-McMahan2017FedAvg" role="doc-biblioref">[1]</a></span>. At its core, FL is a powerful method for training machine learning models across multiple decentralized data sources, such as mobile devices or organizations, without the need to share or transfer the underlying data. This approach has gained significant traction recently, particularly due to its synergistic relationship with emerging technologies in edge computing and distributed learning.</p>
 <p>One of the most compelling advantages of FL is its inherent focus on privacy and security. By keeping data localized on clients’ devices, FL significantly reduces the risks associated with data breaches and misuse. This aspect of FL aligns well with the increasing global emphasis on data privacy regulations.</p>
 <p>FL also diminishes the heavy reliance on centralized cloud infrastructures. By leveraging the computational power of edge devices, FL allows for more scalable and efficient data processing. This decentralized approach not only minimizes latency but also reduces bandwidth and storage costs associated with large-scale data transmission to the cloud.</p>
 <p>The recent surge in interest around FL is closely tied to the advancements in edge computing. As computational capabilities at the edge of networks continue to grow, so does the feasibility of implementing more complex and powerful FL models directly where the data is generated.</p>
@@ -285,7 +285,7 @@ window.Quarto = {
 <p><strong>The Role of the Objective Function</strong></p>
 <p>Central to the learning algorithm is the objective function, often termed the loss function. It quantitatively measures the discrepancy between the model’s predictions and the actual outcomes, essentially quantifying the ‘error’ or ‘loss’ of the model.</p>
 <p>During training, this objective function guides the adjustment of the model’s parameters. The learning algorithm iteratively refines these parameters to minimize the loss. In the context of Federated Learning, each participating client endeavors to minimize the loss on their local dataset. These individual learnings are then collectively aggregated to enhance the global model.</p>
-<p>For a more comprehensive dive into the complexities of deep learning models, their parameterization, and the pivotal role of objective functions, readers are recommended to consult “Deep Learning” by Goodfellow, Bengio, and Courville <span class="citation" data-cites="Goodfellow-et-al-2016"><a href="#ref-Goodfellow-et-al-2016" role="doc-biblioref">[1]</a></span>. This resource offers an extensive examination of neural networks and deep learning fundamentals, providing an essential foundation for these critical aspects of modern machine learning.</p>
+<p>For a more comprehensive dive into the complexities of deep learning models, their parameterization, and the pivotal role of objective functions, readers are recommended to consult “Deep Learning” by Goodfellow, Bengio, and Courville <span class="citation" data-cites="Goodfellow-et-al-2016"><a href="#ref-Goodfellow-et-al-2016" role="doc-biblioref">[2]</a></span>. This resource offers an extensive examination of neural networks and deep learning fundamentals, providing an essential foundation for these critical aspects of modern machine learning.</p>
 </section>
 <section id="optimizing-the-global-model-the-central-objective-function-in-federated-learning" class="level3">
 <h3 class="anchored" data-anchor-id="optimizing-the-global-model-the-central-objective-function-in-federated-learning">Optimizing the Global Model: The Central Objective Function in Federated Learning</h3>
@@ -333,7 +333,7 @@ F_i(\theta) = \frac{1}{n_i} \sum_{j \in [n_i]} \ell(\theta ; z_i^j),&nbsp;
 </section>
 <section id="federated-averaging-fedavg-explained" class="level2">
 <h2 class="anchored" data-anchor-id="federated-averaging-fedavg-explained">Federated Averaging (FedAvg) Explained</h2>
-<p>Federated Averaging, or FedAvg, proposed by McMahan et al., serves as a quintessential example of applying these FL steps in a centralized synchronous environment <span class="citation" data-cites="McMahan2017FedAvg"><a href="#ref-McMahan2017FedAvg" role="doc-biblioref">[2]</a></span>. The objective function can be formulated as:</p>
+<p>Federated Averaging, or FedAvg, proposed by McMahan et al., serves as a quintessential example of applying these FL steps in a centralized synchronous environment <span class="citation" data-cites="McMahan2017FedAvg"><a href="#ref-McMahan2017FedAvg" role="doc-biblioref">[1]</a></span>. The objective function can be formulated as:</p>
 <p><span class="math display">\[
 \min_{\theta} \frac{1}{n} \sum_{i \in D} n_i \cdot F_i(\theta).&nbsp;
 \]</span></p>
@@ -448,11 +448,11 @@ F_i(\theta) = \frac{1}{n_i} \sum_{j \in [n_i]} \ell(\theta ; z_i^j),&nbsp;
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
-<div id="ref-Goodfellow-et-al-2016" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">I. Goodfellow, Y. Bengio, and A. Courville, <em>Deep learning</em>. MIT Press, 2016.</div>
-</div>
 <div id="ref-McMahan2017FedAvg" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas, <span>“Communication-efficient learning of deep networks from decentralized data,”</span> <em>Proceedings of the 20th International Conference on Artificial Intelligence and Statistics</em>, vol. 54, pp. 1273–1282, 2017.</div>
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">B. McMahan, E. Moore, D. Ramage, S. Hampson, and B. A. y Arcas, <span>“Communication-efficient learning of deep networks from decentralized data,”</span> <em>Proceedings of the 20th International Conference on Artificial Intelligence and Statistics</em>, vol. 54, pp. 1273–1282, 2017.</div>
+</div>
+<div id="ref-Goodfellow-et-al-2016" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">I. Goodfellow, Y. Bengio, and A. Courville, <em>Deep learning</em>. MIT Press, 2016.</div>
 </div>
 </div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
