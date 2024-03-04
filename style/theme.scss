@@ -67,7 +67,7 @@ span.navbar-title {
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 10vh 2vw;
+  padding: 2rem 2rem;
 }
 
 .dark-section h2 {
@@ -79,15 +79,14 @@ span.navbar-title {
   position: relative;
   z-index: 1;
   flex-direction: column;
-  gap: 25px;
+  gap: 4rem;
   justify-content: center;
   align-items: center;
-  // height: 94vh;
 }
 
 .header {
   background: linear-gradient(0deg, rgba(27, 0, 79, 1) 0%, rgba(21, 22, 31, 1) 100%);
-  padding: 20vh 0;
+  padding: 17rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,7 +96,7 @@ span.navbar-title {
   display: flex !important;
   flex-direction: column;
   text-align: center;
-  gap: 7vw;
+  gap: 7rem;
   justify-content: center;
   align-items: center;
   max-width: 1280px;
@@ -106,7 +105,7 @@ span.navbar-title {
 .flex-always-column {
   display: flex !important;
   flex-direction: column;
-  gap: 4vh;
+  gap: 4rem;
   justify-content: center;
   align-items: center;
 }
@@ -148,8 +147,7 @@ span.navbar-title {
   }
 
   .distribute {
-    // flex-direction: row;
-    padding: 0 2vw;
+    padding: 0 2rem;
     max-width: 1280px;
   }
 
