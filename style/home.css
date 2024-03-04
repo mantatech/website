@@ -3,23 +3,19 @@
 /* Common properties {{{ */
 
 #quarto-content>* {
-  padding-top: 10vh;
+  padding-top: 2rem;
 }
 
 li {
   text-align: justify;
 }
 
-/* * { */
-/*   box-sizing: content-box; */
-/* } */
-
 section > p {
   text-align: justify;
 }
 
 h1, h2, h3 {
-  margin: 3vh 0;
+  margin: 3rem 0;
 }
 
 /* }}} */
@@ -77,8 +73,6 @@ h1, h2, h3 {
 /* Properties {{{ */
 
 .pixels {
-  height: 92vh;
-  /* border-bottom: 1px solid $text-color!important */
   position: absolute;
 }
 
