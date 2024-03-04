@@ -1,10 +1,11 @@
 const pixelSize = 15; // pixels
 const space = 2;      // pixels
-const pixels = document.querySelector(".pixels");
 
 function buildPixels(){
+  const pixels = document.querySelector(".pixels");
+  const header = document.querySelector(".header");
   const width = 0.99 * window.innerWidth;
-  const height = pixels.clientHeight;
+  const height = header.clientHeight;
   const nRows = Math.floor((height - space) / (space + pixelSize));
   const nCols = Math.floor((width - space) / (space + pixelSize));
   const offsetY = (height - (nRows * (pixelSize + space) + space)) / 2;

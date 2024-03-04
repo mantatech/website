@@ -11,6 +11,12 @@ website:
         text: Articles
       - href: about.qmd
         text: About
+
+    right:
+      - text: Contact us
+        href: mailto:manta@mantatech.io
+        rel: contact-us
+
   page-footer: 
     left: "Copyright &copy; Manta, Inc. 2024. All Rights Reserved"
     right: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
@@ -19,5 +25,5 @@ format:
   html:
     theme: [zephyr, style/theme.scss]
     mainfont: Tailwind
-    fontsize: 1.15em
+    fontsize: 1.0rem
     toc: false

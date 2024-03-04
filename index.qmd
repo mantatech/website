@@ -33,31 +33,26 @@ include-after-body:
 
 :::
 
-
 ::: {.content}
-::: {.light-section}
+::: {.dark-section}
 
-::: {.flex .justify-content-center .align-items-center .padding-1}
+::: {.flex}
+::: {.content-block}
 # Bridge together data silos
+In today’s data-driven world, valuable insights often remain trapped within isolated data silos, accessible only to specific departments or entities. Our platform transforms this potential into actionable intelligence. By seamlessly integrating disparate data sources, we empower your enterprise to leverage collective insights without ever compromising on privacy.
+:::
 ![](static/home/silos.svg)
 :::
 
-::: {.full-width .text-center}
-In today’s data-driven world, valuable insights often remain trapped within isolated data silos, accessible only to specific departments or entities. Our platform transforms this potential into actionable intelligence. By seamlessly integrating disparate data sources, we empower your enterprise to leverage collective insights without ever compromising on privacy.
-:::
-
 :::
 :::
 
 
-
-::: {.content}
-::: {.dark-section .padding-1}
+::: {.dark-section}
 
 # Valorize Your Data, Empower Your Infrastructure
 
 ::: {.flex}
-
 ::: {.part}
 ![](static/home/data-privacy.svg)
 
@@ -78,76 +73,62 @@ Utilize the latent power of your edge devices for on-site data analysis and mode
 ## Slash Your Data Processing Costs
 Say goodbye to hefty cloud storage fees and data transfer costs. With Manta, the only investment is in your existing edge infrastructure, paving the way for more economical and efficient data management.
 :::
+:::
 
 :::
 
-<!-- ::: {.expressions}
-  ![](static/home/data-privacy.svg)
-  ![](static/home/chip.svg)
-  ![](static/home/cost.svg)
 
-  <span>Learning without sharing data</span>
-  <span>Take advantage of the power of edge computing</span>
-  <span>Reduce cost of data processing</span>
-::: -->
+::: {.dark-section}
 
-:::
-:::
+::: {.flex}
+![](static/home/make-ai.svg){id="make-ai"}
 
-::: {.content}
-::: {.light-section .padding-1}
-
-::: {.flex .justify-content-center .align-items-center}
-![](static/home/make-ai.svg)
-
+::: {.content-block}
 # Valorize Data at Its Source with On-Device Learning
 Our platform pioneers a new paradigm, bringing the power of data processing directly to where your data lives – on your edge devices. This shift means you can now extract value from your data in its natural habitat, ensuring maximum efficiency and immediacy. With Manta, your data doesn’t just exist; it evolves and generates insights in real-time, right at the source. This not only streamlines the data processing workflow but also opens up new horizons for real-time, on-site decision-making.
-
-:::
-
 :::
 :::
 
-::: {.content}
-::: {.dark-section .padding-1}
+:::
 
-::: {.flex .justify-content-center .align-items-center}
+::: {.dark-section}
+
+::: {.flex-always-column}
+::: {.content-block}
 # Transform Data into Knowledge, Securely and Privatelyt sharing data
+- Embrace the New Era of Knowledge Sharing: At Manta, we redefine how knowledge is communicated across devices. Instead of transmitting raw data, our platform enables the exchange of insights.
+- Traceable and Transparent Data Utilization: With Manta, traceability is at the forefront. Our platform not only facilitates the secure exchange of knowledge but also provides a clear audit trail of how data is utilized, enhancing accountability and compliance.
+:::
 ::: {.content-animation}
 ![](static/home/communications.svg)
 ![](static/home/neural-network.svg){id="neural-network"}
 :::
 :::
 
-::: {.full-width .text-center}
-- Embrace the New Era of Knowledge Sharing: At Manta, we redefine how knowledge is communicated across devices. Instead of transmitting raw data, our platform enables the exchange of insights.
-- Traceable and Transparent Data Utilization: With Manta, traceability is at the forefront. Our platform not only facilitates the secure exchange of knowledge but also provides a clear audit trail of how data is utilized, enhancing accountability and compliance.
-:::
-
-<!-- ::: {.content-animation}
-![](static/home/communications.svg)
-![](static/home/neural-network.svg){id="neural-network"}
-::: -->
-
-:::
 :::
 
 
-::: {.content}
-::: {.light-section .padding-1}
+::: {.dark-section}
+
+::: {.flex-always-column}
+::: {.content-block}
+# Intelligent Collaboration, Uncompromised Privacy
+Manta empowers businesses to work together in unprecedented ways. By facilitating the exchange of analytical models instead of raw data, we ensure that collaboration enriches your knowledge base while maintaining absolute data privacy and control.
+:::
 
 ::: {.flex .justify-content-center .align-items-center}
 ::: {.content-animation}
 ![](static/home/collaboration.svg)
 ![](static/home/handshake.svg){id="handshake"}
 :::
-
-# Intelligent Collaboration, Uncompromised Privacy
 :::
 
-::: {.full-width .text-center}
-Manta empowers businesses to work together in unprecedented ways. By facilitating the exchange of analytical models instead of raw data, we ensure that collaboration enriches your knowledge base while maintaining absolute data privacy and control.
+
+::: {.contact}
+# Let's keep in touch
+::: {.contact-us}
+  <a href="mailto:manta@manta-tech.io">Contact us</a>
+:::
 :::
 
-:::
 :::
