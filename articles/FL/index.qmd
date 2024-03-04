@@ -14,7 +14,7 @@ Federated Learning (FL) has emerged as a transformative approach in the realm of
 
 # What is Federated Learning?
 
-Federated Learning (FL) emerged as a groundbreaking concept in 2017 when Brendan McMahan and his colleagues introduced the Federated Averaging algorithm [McMahan2017FedAvg]. At its core, FL is a powerful method for training machine learning models across multiple decentralized data sources, such as mobile devices or organizations, without the need to share or transfer the underlying data. This approach has gained significant traction recently, particularly due to its synergistic relationship with emerging technologies in edge computing and distributed learning.
+Federated Learning (FL) emerged as a groundbreaking concept in 2017 when Brendan McMahan and his colleagues introduced the Federated Averaging algorithm [@McMahan2017FedAvg]. At its core, FL is a powerful method for training machine learning models across multiple decentralized data sources, such as mobile devices or organizations, without the need to share or transfer the underlying data. This approach has gained significant traction recently, particularly due to its synergistic relationship with emerging technologies in edge computing and distributed learning.
 
 One of the most compelling advantages of FL is its inherent focus on privacy and security. By keeping data localized on clients' devices, FL significantly reduces the risks associated with data breaches and misuse. This aspect of FL aligns well with the increasing global emphasis on data privacy regulations.
 

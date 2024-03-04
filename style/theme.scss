@@ -34,7 +34,10 @@ $body-color: $text-color;
 
 // Common properties {{{
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   color: $text-color;
 }
 
@@ -112,12 +115,12 @@ span.navbar-title {
 
 [rel="contact-us"] {
   font-size: 1.2em;
-  border-radius: 30px!important;
+  border-radius: 30px !important;
   color: $main-color;
   background: $secondary-color;
   border: 1px solid $text-color;
   font-weight: bold;
-  padding: 0.5rem 2rem!important;
+  padding: 0.5rem 2rem !important;
 }
 
 .contact-us {
@@ -127,13 +130,13 @@ span.navbar-title {
   border-radius: 2rem;
 }
 
-.contact-us > p > a {
+.contact-us>p>a {
   color: $main-color;
   text-decoration: none;
   font-weight: bold;
 }
 
-.contact-us > p {
+.contact-us>p {
   margin: 0;
 }
 
