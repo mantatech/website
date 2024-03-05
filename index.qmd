@@ -20,7 +20,7 @@ include-after-body:
 </span>
 :::
 ::: {.manta-subtitle}
-<span>Our distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation</span>
+### Our distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation.
 :::
 :::
 
@@ -33,8 +33,8 @@ include-after-body:
 
 :::
 
-::: {.content}
 ::: {.dark-section}
+::: {.content}
 
 ::: {.flex}
 ::: {.content-block}
@@ -48,26 +48,30 @@ In today’s data-driven world, valuable insights often remain trapped within is
 :::
 
 
-::: {.dark-section}
+::: {.light-section}
 
 # Valorize Your Data, Empower Your Infrastructure
 
-::: {.flex}
-::: {.part}
+<!-- ::: {.flex} -->
+::: {.grid-content-1}
+<!-- ::: {.part} -->
+::: {.grid-item}
 ![](static/home/data-privacy.svg)
 
 ## Harness In-House Data Insights
 With Manta, dive into the depths of your data. Analyze and train models directly within your infrastructure, keeping your data securely in-house and eliminating the need for third-party data handling.
 :::
 
-::: {.part}
+<!-- ::: {.part} -->
+::: {.grid-item}
 ![](static/home/chip.svg)
 
 ## Leverage Edge Computing for Smarter Processing
 Utilize the latent power of your edge devices for on-site data analysis and model training. Experience the efficiency of processing data where it's generated, unlocking new potentials in speed and responsiveness.
 :::
 
-::: {.part}
+<!-- ::: {.part} -->
+::: {.grid-item}
 ![](static/home/cost.svg)
 
 ## Slash Your Data Processing Costs
@@ -91,13 +95,25 @@ Our platform pioneers a new paradigm, bringing the power of data processing dire
 
 :::
 
-::: {.dark-section}
+::: {.light-section}
 
 ::: {.flex-always-column}
 ::: {.content-block}
 # Transform Data into Knowledge, Securely and Privatelyt sharing data
-- Embrace the New Era of Knowledge Sharing: At Manta, we redefine how knowledge is communicated across devices. Instead of transmitting raw data, our platform enables the exchange of insights.
-- Traceable and Transparent Data Utilization: With Manta, traceability is at the forefront. Our platform not only facilitates the secure exchange of knowledge but also provides a clear audit trail of how data is utilized, enhancing accountability and compliance.
+
+::: {.grid-content-2}
+<!-- ::: {.grid-container} -->
+::: {.grid-item}
+## Embrace the New Era of Knowledge Sharing
+At Manta, we redefine how knowledge is communicated across devices. Instead of transmitting raw data, our platform enables the exchange of insights.
+:::
+
+::: {.grid-item}
+## Traceable and Transparent Data Utilization
+With Manta, traceability is at the forefront. Our platform not only facilitates the secure exchange of knowledge but also provides a clear audit trail of how data is utilized, enhancing accountability and compliance.
+:::
+:::
+
 :::
 ::: {.content-animation}
 ![](static/home/communications.svg)
