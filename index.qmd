@@ -122,7 +122,7 @@ Manta empowers businesses to work together in unprecedented ways. By facilitatin
 ![](static/home/handshake.svg){id="handshake"}
 :::
 :::
-
+:::
 
 ::: {.contact}
 # Let's keep in touch
