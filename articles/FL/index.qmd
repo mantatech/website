@@ -6,6 +6,7 @@ categories: [machine learning, decentralization]
 bibliography: references.bib
 toc: true
 csl: ../../style/ieee.csl
+image: "./FL-article.jpg"
 comments:
   hypothesis:
     theme: clean
