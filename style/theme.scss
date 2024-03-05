@@ -39,11 +39,18 @@ h2,
 h3,
 h4 {
   color: $text-color;
+  margin: 3rem 0;
 }
 
 .navbar {
   background: rgba(21, 22, 31, 0.75);
   backdrop-filter: blur(5px);
+}
+
+nav .navbar-nav .nav-item .active {
+  color: #FFD600; // Use your own color here
+  // background-color: #yourBackgroundColor; // Use your own background color here
+  // border-bottom: 2px solid #yourBorderColor; // Use your own border color here
 }
 
 span.navbar-title {
@@ -55,16 +62,7 @@ span.navbar-title {
 // Properties {{{
 
 .light-section {
-  background: #252737;
-  text-align: center;
-}
-
-.light-section h2 {
-  border: none;
-}
-
-.dark-section {
-  background: $background-color;
+  background: linear-gradient(0deg, rgba(27, 0, 79, 1) 0%, rgba(21, 22, 31, 1) 100%);
   text-align: center;
   justify-content: center;
   align-items: center;
@@ -73,9 +71,28 @@ span.navbar-title {
   padding: 2rem 2rem;
 }
 
-.dark-section h2 {
+h2 {
   border: none;
 }
+
+// .light-section h2 {
+//   border: none;
+// }
+
+.dark-section {
+  // background: $background-color;
+  background: linear-gradient(0deg, rgba(21, 22, 31, 1) 0%, rgba(27, 0, 79, 1) 100%);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2rem;
+}
+
+// .dark-section h2 {
+//   border: none;
+// }
 
 .distribute {
   display: flex !important;
@@ -89,7 +106,7 @@ span.navbar-title {
 
 .header {
   background: linear-gradient(0deg, rgba(27, 0, 79, 1) 0%, rgba(21, 22, 31, 1) 100%);
-  padding: 17rem 0;
+  padding: 10rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,6 +120,31 @@ span.navbar-title {
   justify-content: center;
   align-items: center;
   max-width: 1280px;
+}
+
+.grid-content {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  // grid-template-columns: repeat(3, 1fr);
+  grid-gap: 30px;
+}
+
+@media (min-width: 960px) {
+  .grid-content {
+    display: grid;
+  }
+}
+
+.grid-item {
+  background: #252737;
+  padding: 2rem;
+  border: 1px solid white;
+  border-radius: 1rem;
+  // flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .flex-always-column {

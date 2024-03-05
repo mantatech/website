@@ -1,8 +1,8 @@
 ---
-title: "About us"
+# title: "About us"
+title-block-banner: "#5801FF"
 # page-layout: custom
 page-layout: full
-title-block-banner: "#5801FF"
 css: style/about.css
 ---
 
@@ -16,6 +16,7 @@ css: style/about.css
 ![](static/about/ceo.jpg)
 
 ### Hugo Miralles
+
 <span class="role">CEO</span>
 
 Adventure enthusiast and leader.<br>Combines a deep technical background with a passion for ethical AI and team building.
@@ -32,32 +33,15 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 :::
 :::
 
-<!-- ## Advancing Beyond the Cloud: Unlocking Efficiency and Security -->
-<!---->
-<!-- - **Cost Efficiency** -->
-<!---->
-<!-- Conducting computations closer to the data source reduces costs associated with cloud processing and minimize energy consumption. -->
-<!---->
-<!-- - **Enhanced Data Security** -->
-<!---->
-<!-- Manta fortifies data privacy by decentralizing storage, to mitigate the risks associated with centralized data repositories. -->
-<!---->
-<!-- - **Environmental Impact** -->
-<!---->
-<!-- Our edge computing model significantly lowers energy usage compared to traditional cloud infrastructures. -->
-<!---->
-<!-- - **Improved Connectivity and Speed:** -->
-<!---->
-<!-- Experience real-time data processing with Manta's edge-based approach. -->
-
-::: {.dark-section}
 ::: {.container}
 ::: {.values}
 
 # Our Values
 
-::: {.flex}
-::: {.part}
+<!-- ::: {.flex}
+::: {.part} -->
+::: {.grid-content-1}
+::: {.grid-item}
 
 ![](static/about/values1.png){class="filter-img"}
 
@@ -66,7 +50,8 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 Manta focuses on redefining data processing economics. We emphasize efficient, cost-effective solutions, leveraging edge computing for economic advantage while maximizing data utility at its source.
 :::
 
-::: {.part}
+<!-- ::: {.part} -->
+::: {.grid-item}
 
 ![](static/about/values2.png){class="filter-img"}
 
@@ -75,14 +60,14 @@ Manta focuses on redefining data processing economics. We emphasize efficient, c
 Our approach centers on robust data security and adherence to compliance standards like GDPR. We prioritize maintaining data integrity, ensuring security, and offering traceable data management.
 :::
 
-::: {.part}
+<!-- ::: {.part} -->
+::: {.grid-item}
 
 ![](static/about/values3.png){class="filter-img"}
 
 ## Collaborative Intelligence: Bridging Data Gaps Securely
 
 Manta aims to facilitate secure data collaboration, breaking down corporate silos. Our focus is on fostering secure, innovative partnerships for shared data utilization, enhancing cooperative progress.
-:::
 :::
 :::
 :::

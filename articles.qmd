@@ -1,5 +1,6 @@
 ---
-title: "Articles"
+# title: "Articles"
+title-block-banner: "#5801FF"
 listing:
   contents: articles
   type: grid
@@ -7,5 +8,4 @@ listing:
   sort-ui: false
   filter-ui: false
 page-layout: full
-title-block-banner: "#5801FF"
 ---
