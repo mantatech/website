@@ -11,13 +11,7 @@ li {
 }
 
 section>p {
-  text-align: justify;
-}
-
-h1,
-h2,
-h3 {
-  margin: 3rem 0;
+  text-align: center;
 }
 
 /* }}} */
@@ -82,11 +76,10 @@ h3 {
   font-size: 2rem;
   text-align: center;
   vertical-align: middle;
-  margin-bottom: 1.5rem;
 }
 
 .manta-subtitle {
-  font-size: 1rem;
+  font-size: 10rem;
   text-align: center;
   vertical-align: middle;
 }
@@ -206,6 +199,12 @@ h3 {
 
   #make-ai {
     width: initial;
+  }
+}
+
+@media (max-width: 960px) {
+  .title > section > h3 {
+    margin: 1rem;
   }
 }
 
