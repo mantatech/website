@@ -49,9 +49,7 @@ h4 {
 }
 
 nav .navbar-nav .nav-item .active {
-  color: #FFD600; // Use your own color here
-  // background-color: #yourBackgroundColor; // Use your own background color here
-  // border-bottom: 2px solid #yourBorderColor; // Use your own border color here
+  color: $secondary-color; // Use your own color here
 }
 
 span.navbar-title {
@@ -101,14 +99,13 @@ span.navbar-title {
 
 .header {
   background: linear-gradient(0deg, rgba(27, 0, 79, 1) 0%, rgba(21, 22, 31, 1) 100%);
-  padding: 10rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .flex {
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   text-align: center;
   gap: 7rem;
@@ -134,16 +131,14 @@ span.navbar-title {
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-}
 
-.grid-item {
   h2 {
     border: none;
   }
 }
 
 .flex-always-column {
-  display: flex !important;
+  display: flex;
   flex-direction: column;
   gap: 4rem;
   justify-content: center;
@@ -152,11 +147,12 @@ span.navbar-title {
 
 [rel="contact-us"] {
   font-size: 1.2em;
-  border-radius: 30px !important;
+  border-radius: 10rem !important;
   color: $main-color;
   background: $secondary-color;
   border: 1px solid $text-color;
   font-weight: bold;
+  text-align: center;
   padding: 0.5rem 2rem !important;
 }
 
@@ -182,6 +178,9 @@ span.navbar-title {
 // Media specifications {{{
 
 @media (min-width: 960px) {
+  .header {
+    padding: 2rem 0;
+  }
   .expressions>p {
     flex-direction: row;
   }
