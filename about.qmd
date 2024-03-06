@@ -1,8 +1,6 @@
 ---
-# title: "About us"
-title-block-banner: "#5801FF"
-# page-layout: custom
-page-layout: full
+title: "About us"
+page-layout: custom
 css: style/about.css
 ---
 
@@ -38,9 +36,7 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 
 # Our Values
 
-<!-- ::: {.flex}
-::: {.part} -->
-::: {.grid-content-1}
+::: {.grid-content-3}
 ::: {.grid-item}
 
 ![](static/about/values1.png){class="filter-img"}
@@ -50,7 +46,6 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 Manta focuses on redefining data processing economics. We emphasize efficient, cost-effective solutions, leveraging edge computing for economic advantage while maximizing data utility at its source.
 :::
 
-<!-- ::: {.part} -->
 ::: {.grid-item}
 
 ![](static/about/values2.png){class="filter-img"}
@@ -60,7 +55,6 @@ Manta focuses on redefining data processing economics. We emphasize efficient, c
 Our approach centers on robust data security and adherence to compliance standards like GDPR. We prioritize maintaining data integrity, ensuring security, and offering traceable data management.
 :::
 
-<!-- ::: {.part} -->
 ::: {.grid-item}
 
 ![](static/about/values3.png){class="filter-img"}
@@ -79,7 +73,7 @@ Manta aims to facilitate secure data collaboration, breaking down corporate silo
 
 # Our Missions
 
-::: {.grid-content}
+::: {.grid-content-2}
 ::: {.grid-item}
 ![](static/about/missions1.png){class="resize"}
 
