@@ -99,7 +99,7 @@ Our platform pioneers a new paradigm, bringing the power of data processing dire
 
 ::: {.flex-always-column}
 ::: {.content-block}
-# Transform Data into Knowledge, Securely and Privatelyt sharing data
+# Transform Data into Knowledge, Securely and Privately
 
 ::: {.grid-content-2}
 <!-- ::: {.grid-container} -->
