@@ -14,22 +14,22 @@
   src: url("static/fonts/Tailwind Black.ttf");
 }
 
-$main-color : #5801FF;
-$secondary-color: #FFD600;
-$background-color: #15161F;
-$light-background: #252737;
-$secondary-background-color: #0C0B0C;
-$text-color: #E1E1E1;
-$foreground-color: #56505C;
-$selection-color: #595959;
-$border-color: #56505C;
+$manta-purple: #5801FF;
+$manta-yellow: #FFD600;
+$manta-dark:   #15161F;
+$manta-light:  #252737;
+$manta-black:  #0C0B0C;
+$manta-white:  #E1E1E1;
+$manta-grey1:  #56505C;
+$manta-grey2:  #595959;
+$manta-grey3:  #56505C;
 
-$body-bg : $background-color;
-$body-color: $text-color;
+$body-bg:      $manta-dark;
+$body-color:   $manta-white;
+
+// $navbar-bg:    $manta-purple;
 
 // }}}
-
-// $navbar-bg: $main-color;
 
 /*-- scss:rules --*/
 
@@ -39,7 +39,7 @@ h1,
 h2,
 h3,
 h4 {
-  color: $text-color;
+  color: $manta-white;
   margin: 3rem 0;
 }
 
@@ -49,7 +49,7 @@ h4 {
 }
 
 nav .navbar-nav .nav-item .active {
-  color: $secondary-color; // Use your own color here
+  color: $manta-yellow;
 }
 
 span.navbar-title {
@@ -125,9 +125,9 @@ span.navbar-title {
 }
 
 .grid-item {
-  background: $light-background;
+  background: $manta-light;
   padding: 2rem;
-  border: 1px solid $text-color;
+  border: 1px solid $manta-white;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -148,9 +148,9 @@ span.navbar-title {
 [rel="contact-us"] {
   font-size: 1.2em;
   border-radius: 10rem !important;
-  color: $main-color;
-  background: $secondary-color;
-  border: 1px solid $text-color;
+  color: $manta-purple;
+  background: $manta-yellow;
+  border: 1px solid $manta-white;
   font-weight: bold;
   text-align: center;
   padding: 0.5rem 2rem !important;
@@ -158,13 +158,13 @@ span.navbar-title {
 
 .contact-us {
   font-size: 1.15rem;
-  background: $secondary-color;
+  background: $manta-yellow;
   padding: 1rem 2rem;
   border-radius: 2rem;
 }
 
 .contact-us>p>a {
-  color: $main-color;
+  color: $manta-purple;
   text-decoration: none;
   font-weight: bold;
 }
