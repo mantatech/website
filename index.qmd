@@ -52,9 +52,7 @@ In today’s data-driven world, valuable insights often remain trapped within is
 
 # Valorize Your Data, Empower Your Infrastructure
 
-<!-- ::: {.flex} -->
-::: {.grid-content-1}
-<!-- ::: {.part} -->
+::: {.grid-content-3}
 ::: {.grid-item}
 ![](static/home/data-privacy.svg)
 
@@ -62,7 +60,6 @@ In today’s data-driven world, valuable insights often remain trapped within is
 With Manta, dive into the depths of your data. Analyze and train models directly within your infrastructure, keeping your data securely in-house and eliminating the need for third-party data handling.
 :::
 
-<!-- ::: {.part} -->
 ::: {.grid-item}
 ![](static/home/chip.svg)
 
@@ -70,7 +67,6 @@ With Manta, dive into the depths of your data. Analyze and train models directly
 Utilize the latent power of your edge devices for on-site data analysis and model training. Experience the efficiency of processing data where it's generated, unlocking new potentials in speed and responsiveness.
 :::
 
-<!-- ::: {.part} -->
 ::: {.grid-item}
 ![](static/home/cost.svg)
 
@@ -102,7 +98,6 @@ Our platform pioneers a new paradigm, bringing the power of data processing dire
 # Transform Data into Knowledge, Securely and Privatelyt sharing data
 
 ::: {.grid-content-2}
-<!-- ::: {.grid-container} -->
 ::: {.grid-item}
 ## Embrace the New Era of Knowledge Sharing
 At Manta, we redefine how knowledge is communicated across devices. Instead of transmitting raw data, our platform enables the exchange of insights.

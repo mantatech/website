@@ -17,6 +17,7 @@
 $main-color : #5801FF;
 $secondary-color: #FFD600;
 $background-color: #15161F;
+$light-background: #252737;
 $secondary-background-color: #0C0B0C;
 $text-color: #E1E1E1;
 $foreground-color: #56505C;
@@ -69,18 +70,13 @@ span.navbar-title {
   display: flex;
   flex-direction: column;
   padding: 2rem 2rem;
-}
 
-h2 {
-  border: none;
+  h2 {
+    border: none;
+  }
 }
-
-// .light-section h2 {
-//   border: none;
-// }
 
 .dark-section {
-  // background: $background-color;
   background: linear-gradient(0deg, rgba(21, 22, 31, 1) 0%, rgba(27, 0, 79, 1) 100%);
   text-align: center;
   justify-content: center;
@@ -88,18 +84,17 @@ h2 {
   display: flex;
   flex-direction: column;
   padding: 2rem 2rem;
-}
 
-// .dark-section h2 {
-//   border: none;
-// }
+  h2 {
+    border: none;
+  }
+}
 
 .distribute {
   display: flex !important;
   position: relative;
   z-index: 1;
   flex-direction: column;
-  gap: 4rem;
   justify-content: center;
   align-items: center;
 }
@@ -122,29 +117,29 @@ h2 {
   max-width: 1280px;
 }
 
-.grid-content {
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  // grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
-}
-
-@media (min-width: 960px) {
-  .grid-content {
-    display: grid;
+@for $nb-columns from 1 through 3 {
+  .grid-content-#{$nb-columns} {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat($nb-columns, 1fr);
+    grid-gap: 30px;
   }
 }
 
 .grid-item {
-  background: #252737;
+  background: $light-background;
   padding: 2rem;
-  border: 1px solid white;
+  border: 1px solid $text-color;
   border-radius: 1rem;
-  // flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+}
+
+.grid-item {
+  h2 {
+    border: none;
+  }
 }
 
 .flex-always-column {
@@ -198,6 +193,13 @@ h2 {
 
   .flex {
     flex-direction: row;
+  }
+
+  @for $nb-columns from 1 through 3 {
+    .grid-content-#{$nb-columns} {
+      display: grid;
+      max-width: 1280px;
+    }
   }
 }
 
