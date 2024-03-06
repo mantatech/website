@@ -1,6 +1,5 @@
 ---
 title: "About us"
-title-block-banner: true
 page-layout: custom
 css: style/about.css
 ---
