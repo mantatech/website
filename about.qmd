@@ -1,5 +1,4 @@
 ---
-title: "About us"
 page-layout: custom
 css: style/about.css
 ---
