@@ -127,11 +127,9 @@ With Manta, traceability is at the forefront. Our platform not only facilitates 
 Manta empowers businesses to work together in unprecedented ways. By facilitating the exchange of analytical models instead of raw data, we ensure that collaboration enriches your knowledge base while maintaining absolute data privacy and control.
 :::
 
-::: {.flex .justify-content-center .align-items-center}
 ::: {.content-animation}
 ![](static/home/collaboration.svg)
 ![](static/home/handshake.svg){id="handshake"}
-:::
 :::
 :::
 
