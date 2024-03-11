@@ -10,6 +10,7 @@ image: "./decentralized-article.jpg"
 comments:
   hypothesis:
     theme: clean
+title-block-banner: ./decentralized-article-banner.jpg
 ---
 
 Data science, in its broadest sense, represents a fusion of multiple disciplines, combining data analysis, statistics, machine learning, and deep learning to extract insights and knowledge from data. Historically, the field of data science has progressed from early methods of recording and analyzing data to the development of complex algorithms and statistical models in the 20th century. The advent of modern computing gave birth to the term "data science" in the 1960s, but it wasn't until the late 1990s and early 2000s that the field truly exploded, owing to the digital revolution and the exponential growth of data.

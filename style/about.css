@@ -61,4 +61,17 @@
   max-height: 200px;
 }
 
-/* }}} */
+.section {
+  background: linear-gradient(0deg, rgba(21, 22, 31, 1) 0%, rgb(47, 209, 35) 0%);
+  /* text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 2rem; */
+
+  /* background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; */
+}

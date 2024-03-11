@@ -16,16 +16,16 @@
 
 $manta-purple: #5801FF;
 $manta-yellow: #FFD600;
-$manta-dark:   #15161F;
-$manta-light:  #252737;
-$manta-black:  #0C0B0C;
-$manta-white:  #E1E1E1;
-$manta-grey1:  #56505C;
-$manta-grey2:  #595959;
-$manta-grey3:  #56505C;
+$manta-dark: #15161F;
+$manta-light: #2527376e;
+$manta-black: #0C0B0C;
+$manta-white: #E1E1E1;
+$manta-grey1: #56505c34;
+$manta-grey2: #adddcf;
+$manta-grey3: #56505C;
 
-$body-bg:      $manta-dark;
-$body-color:   $manta-white;
+$body-bg: $manta-dark;
+$body-color: $manta-white;
 
 // $navbar-bg:    $manta-purple;
 
@@ -86,6 +86,11 @@ span.navbar-title {
   h2 {
     border: none;
   }
+
+  // background-attachment: fixed;
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
 }
 
 .distribute {
@@ -122,6 +127,14 @@ span.navbar-title {
     grid-template-columns: repeat($nb-columns, 1fr);
     grid-gap: 30px;
   }
+}
+
+.content-embedded {
+  background: $manta-grey1;
+  border: 1px solid $manta-grey2;
+  border-radius: 1rem;
+  margin: 4rem;
+  padding: 4rem;
 }
 
 .grid-item {
@@ -181,6 +194,7 @@ span.navbar-title {
   .header {
     padding: 2rem 0;
   }
+
   .expressions>p {
     flex-direction: row;
   }
