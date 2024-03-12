@@ -16,15 +16,17 @@
 
 $manta-purple: #5801FF;
 $manta-yellow: #FFD600;
-$manta-dark: #15161F;
-$manta-light: #2527376e;
-$manta-black: #0C0B0C;
-$manta-white: #E1E1E1;
-$manta-grey1: #56505c34;
-$manta-grey2: #adddcf;
-$manta-grey3: #56505C;
+$manta-green:  #ADDDCF;
+$manta-dark:   #15161F;
+$manta-light:  #252737;
+$manta-black:  #0C0B0C;
+$manta-white:  #E1E1E1;
+$manta-grey1:  #56505C;
+$manta-grey2:  #595959;
+$manta-grey3:  #56505C;
+$manta-transparency: rgb(24 24 50 / 20%);
 
-$body-bg: $manta-dark;
+$body-bg:    $manta-dark;
 $body-color: $manta-white;
 
 // $navbar-bg:    $manta-purple;
@@ -35,10 +37,7 @@ $body-color: $manta-white;
 
 // Common properties {{{
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
   color: $manta-white;
   margin: 3rem 0;
 }
@@ -130,7 +129,7 @@ span.navbar-title {
 }
 
 .content-embedded {
-  background: $manta-grey1;
+  background: $manta-transparency;
   border: 1px solid $manta-grey2;
   border-radius: 1rem;
   margin: 4rem;

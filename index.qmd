@@ -119,7 +119,8 @@ With Manta, traceability is at the forefront. Our platform not only facilitates 
 :::
 ::: {.content-animation}
 ![](static/home/communications.svg)
-![](static/home/neural-network.svg){id="neural-network"}
+![](static/home/logo-connected.svg){id="logo-connected"}
+![](static/home/logo-connected-reverse.svg){id="logo-connected-reverse"}
 :::
 :::
 
