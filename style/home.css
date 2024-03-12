@@ -230,6 +230,10 @@ section>p {
   #make-ai {
     width: initial;
   }
+
+  #silos {
+    max-width: 26rem;
+  }
 }
 
 @media (max-width: 960px) {

@@ -35,17 +35,16 @@ include-after-body:
 
 ::: {.dark-section}
 ::: {.content-embedded}
-::: {.content}
 
 ::: {.flex}
 ::: {.content-block}
 # Bridge together data silos
 In today’s data-driven world, valuable insights often remain trapped within isolated data silos, accessible only to specific departments or entities. Our platform transforms this potential into actionable intelligence. By seamlessly integrating disparate data sources, we empower your enterprise to leverage collective insights without ever compromising on privacy.
 :::
-![](static/home/silos.svg)
+
+![](static/home/silos.svg){id="silos"}
 :::
 
-:::
 :::
 :::
 
