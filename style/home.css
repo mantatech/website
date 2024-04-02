@@ -36,17 +36,17 @@ section>p {
 
   50% {
     visibility: hidden;
-    transform: translate(400%, 150%);
+    transform: translate(400%, 120%);
   }
 
   51% {
     visibility: hidden;
-    transform: translate(400%, 150%);
+    transform: translate(400%, 120%);
   }
 
   100% {
     visibility: hidden;
-    transform: translate(0%, 150%);
+    transform: translate(0%, 120%);
   }
 }
 
@@ -63,16 +63,16 @@ section>p {
 
   50% {
     visibility: hidden;
-    transform: translate(400%, 150%);
+    transform: translate(400%, 120%);
   }
 
   51% {
     visibility: none;
-    transform: translate(400%, 150%);
+    transform: translate(400%, 120%);
   }
 
   100% {
-    transform: translate(0%, 150%);
+    transform: translate(0%, 120%);
   }
 }
 
@@ -177,7 +177,7 @@ section>p {
 #logo-connected {
   position: absolute;
   width: 10%;
-  top: 6%;
+  top: 0%;
   left: 25%;
   animation: communication-left-to-right 8s infinite forwards;
 }
@@ -185,7 +185,7 @@ section>p {
 #logo-connected-reverse {
   position: absolute;
   width: 10%;
-  top: 6%;
+  top: 0%;
   left: 25%;
   animation: communication-right-to-left 8s infinite forwards;
 }
