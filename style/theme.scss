@@ -59,6 +59,10 @@ span.navbar-title {
 
 // Properties {{{
 
+.main-background {
+  background-image: url("static/wave.png");
+}
+
 .light-section {
   background: linear-gradient(0deg, rgba(27, 0, 79, 1) 0%, rgba(21, 22, 31, 1) 100%);
   text-align: center;
@@ -85,11 +89,6 @@ span.navbar-title {
   h2 {
     border: none;
   }
-
-  // background-attachment: fixed;
-  // background-position: center;
-  // background-repeat: no-repeat;
-  // background-size: cover;
 }
 
 .distribute {
@@ -161,7 +160,7 @@ span.navbar-title {
 }
 
 .contact-us {
-  font-size: 1.15rem;
+  font-size: x-large;
   background: $manta-yellow;
   padding: 1rem 2rem;
   border-radius: 2rem;
@@ -175,6 +174,10 @@ span.navbar-title {
 
 .contact-us>p {
   margin: 0;
+}
+
+.navbar-logo {
+  max-height: 54px;
 }
 
 /// }}}
@@ -212,6 +215,14 @@ span.navbar-title {
     border-radius: 1rem;
     margin: 4rem;
     padding: 4rem;
+  }
+
+  .navbar-logo {
+    max-height: 74px;
+  }
+  
+  .menu-text {
+    font-size: large;
   }
 }
 
