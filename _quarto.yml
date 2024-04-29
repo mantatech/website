@@ -14,7 +14,7 @@ website:
 
     right:
       - text: Contact us
-        href: mailto:manta@mantatech.io
+        href: mailto:manta@manta-tech.io
         rel: contact-us
 
   page-footer: 
