@@ -31,6 +31,7 @@
 }
 
 .introduction h1 {
+  text-align: center;
   margin: 1rem 0;
   color: #5801FF;
   font-weight: normal;
@@ -44,11 +45,11 @@
 	grid-area: 1/1/2/2;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .values > h1 {
   margin: 1rem 0;
+  text-align: center;
 }
 
 .values-item {
@@ -66,15 +67,20 @@
   font-size: smaller;
 }
 
+
+.values-item > .text > p > strong {
+  font-size: large;
+}
+
 .missions {
 	grid-area: 2/1/3/2;
   display: flex;
   flex-direction: column;
-  text-align: center;
 }
 
 .missions > h1 {
   margin: 1rem 0;
+  text-align: center;
 }
 
 .missions-item {
@@ -92,6 +98,10 @@
   font-size: smaller;
 }
 
+.missions-item > .text > p > strong {
+  font-size: large;
+}
+
 .how-it-works {
 	grid-area: 1 / 2 / 3 / 3;
   display: flex;
@@ -103,7 +113,8 @@
   margin: 1rem 0px;
 }
 
-.profile>p>img {
+
+.profile > p > img {
   border-radius: 10%;
 }
 
@@ -174,8 +185,17 @@
   .values-item > .text > p {
     font-size: large;
   }
+
+  .values-item > .text > p > strong {
+    font-size: x-large;
+  }
+
   .missions-item > .text > p {
     font-size: large;
+  }
+
+  .missions-item > .text > p > strong {
+    font-size: x-large;
   }
 }
 
