@@ -58,6 +58,7 @@
   align-items: center;
   justify-items: center;
   text-align: justify;
+  margin: 1rem 0;
 }
 
 .values-item > .text > p {
@@ -83,6 +84,7 @@
   align-items: center;
   justify-items: center;
   text-align: justify;
+  margin: 1rem 0;
 }
 
 .missions-item > .text > p {
