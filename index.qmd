@@ -128,7 +128,6 @@ Our goal is to streamline data analysis and model training, enabling professiona
 ![](static/about/simplified-architecture.png)
 :::
 :::
-:::
 
 ::: {.team}
 
@@ -160,6 +159,7 @@ A detail-oriented technologist.<br>Benjamin's expertise lies in computer science
 # Let's keep in touch
 ::: {.contact-us}
   <a href="mailto:manta@manta-tech.io">Contact us</a>
+:::
 :::
 :::
 
