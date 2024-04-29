@@ -34,14 +34,15 @@ include-after-body:
 :::
 
 ::: {.dark-section}
-::: {.content}
+::: {.content-embedded}
 
 ::: {.flex}
 ::: {.content-block}
 # Bridge together data silos
 In today’s data-driven world, valuable insights often remain trapped within isolated data silos, accessible only to specific departments or entities. Our platform transforms this potential into actionable intelligence. By seamlessly integrating disparate data sources, we empower your enterprise to leverage collective insights without ever compromising on privacy.
 :::
-![](static/home/silos.svg)
+
+![](static/home/silos.svg){id="silos"}
 :::
 
 :::
@@ -49,6 +50,7 @@ In today’s data-driven world, valuable insights often remain trapped within is
 
 
 ::: {.light-section}
+::: {.content-embedded}
 
 # Valorize Your Data, Empower Your Infrastructure
 
@@ -76,9 +78,11 @@ Say goodbye to hefty cloud storage fees and data transfer costs. With Manta, the
 :::
 
 :::
+:::
 
 
 ::: {.dark-section}
+::: {.content-embedded}
 
 ::: {.flex}
 ![](static/home/make-ai.svg){id="make-ai"}
@@ -90,12 +94,14 @@ Our platform pioneers a new paradigm, bringing the power of data processing dire
 :::
 
 :::
+:::
 
 ::: {.light-section}
+::: {.content-embedded}
 
 ::: {.flex-always-column}
 ::: {.content-block}
-# Transform Data into Knowledge, Securely and Privatelyt sharing data
+# Transform Data into Knowledge, Securely and Privately
 
 ::: {.grid-content-2}
 ::: {.grid-item}
@@ -112,14 +118,16 @@ With Manta, traceability is at the forefront. Our platform not only facilitates 
 :::
 ::: {.content-animation}
 ![](static/home/communications.svg)
-![](static/home/neural-network.svg){id="neural-network"}
+![](static/home/logo-connected.svg){id="logo-connected"}
+![](static/home/logo-connected-reverse.svg){id="logo-connected-reverse"}
 :::
 :::
 
 :::
-
+:::
 
 ::: {.dark-section}
+::: {.content-embedded}
 
 ::: {.flex-always-column}
 ::: {.content-block}
@@ -130,6 +138,7 @@ Manta empowers businesses to work together in unprecedented ways. By facilitatin
 ::: {.content-animation}
 ![](static/home/collaboration.svg)
 ![](static/home/handshake.svg){id="handshake"}
+:::
 :::
 :::
 

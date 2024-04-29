@@ -24,33 +24,55 @@ section>p {
   }
 }
 
-@keyframes communication {
+@keyframes communication-left-to-right {
   0% {
-    filter: brightness(0) saturate(100%) invert(9%) sepia(95%) saturate(7492%) hue-rotate(265deg) brightness(105%) contrast(130%);
     transform: translateX(0%);
   }
 
   49% {
-    filter: brightness(0) saturate(100%) invert(9%) sepia(95%) saturate(7492%) hue-rotate(265deg) brightness(105%) contrast(130%);
-    transform: translateX(600%);
+    transform: translateX(400%);
     visibility: hidden;
   }
 
   50% {
     visibility: hidden;
-    filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
-    transform: translate(600%, 200%);
+    transform: translate(400%, 120%);
+  }
+
+  51% {
+    visibility: hidden;
+    transform: translate(400%, 120%);
+  }
+
+  100% {
+    visibility: hidden;
+    transform: translate(0%, 120%);
+  }
+}
+
+@keyframes communication-right-to-left {
+  0% {
+    visibility: hidden;
+    transform: translateX(0%);
+  }
+
+  49% {
+    transform: translateX(400%);
+    visibility: hidden;
+  }
+
+  50% {
+    visibility: hidden;
+    transform: translate(400%, 120%);
   }
 
   51% {
     visibility: none;
-    filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
-    transform: translate(600%, 200%);
+    transform: translate(400%, 120%);
   }
 
   100% {
-    filter: brightness(0) saturate(100%) invert(88%) sepia(63%) saturate(7500%) hue-rotate(345deg) brightness(95%) contrast(110%);
-    transform: translate(0%, 200%);
+    transform: translate(0%, 120%);
   }
 }
 
@@ -91,7 +113,7 @@ section>p {
       #E1E1E1 0%,
       #5801FF 29%,
       #FF1361 67%,
-      #FFD600 100%);
+      #FFD400 100%);
   background-size: auto auto;
   background-clip: border-box;
   background-size: 200% auto;
@@ -152,12 +174,20 @@ section>p {
   left: 50%;
 }
 
-#neural-network {
+#logo-connected {
   position: absolute;
-  width: 5.6%;
-  top: 10%;
-  left: 30%;
-  animation: communication 8s infinite forwards;
+  width: 10%;
+  top: 0%;
+  left: 25%;
+  animation: communication-left-to-right 8s infinite forwards;
+}
+
+#logo-connected-reverse {
+  position: absolute;
+  width: 10%;
+  top: 0%;
+  left: 25%;
+  animation: communication-right-to-left 8s infinite forwards;
 }
 
 #handshake {
@@ -199,6 +229,10 @@ section>p {
 
   #make-ai {
     width: initial;
+  }
+
+  #silos {
+    max-width: 26rem;
   }
 }
 

@@ -1,7 +1,10 @@
 ---
+# title: "About us"
 page-layout: custom
 css: style/about.css
 ---
+
+<!-- ::: {.section} -->
 
 ::: {.team}
 
@@ -107,3 +110,5 @@ Our goal is to streamline data analysis and model training, enabling professiona
 :::
 :::
 :::
+
+<!-- ::: -->
