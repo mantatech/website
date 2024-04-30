@@ -1,14 +1,11 @@
 ---
+title: "Diving into the power of distributed data"
 page-layout: custom
 css: style/about.css
 ---
 
 ::: {.main-background}
 ::: {.container}
-
-::: {.manta-title}
-Diving into the power of distributed data
-:::
 
 ::: {.manta-subtitle}
 Our cutting-edge distributed data science platform empowers businesses to harness the full potential of their decentralized data, driving innovation and efficiency in every computation 
