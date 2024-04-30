@@ -2,6 +2,7 @@ project:
   type: website
 
 website:
+  favicon: "static/favicon.png"
   search: false
   navbar:
     logo: "static/manta.png"
